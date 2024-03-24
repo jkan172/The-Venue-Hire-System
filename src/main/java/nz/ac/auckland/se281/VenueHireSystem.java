@@ -62,12 +62,18 @@ public class VenueHireSystem {
                 return;
             } 
 
-           Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
+            for (Venues venue : Venue) {
+              if (venue.getVenueCode().equals(venueCode)) {
+              MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, venue.getVenueName());
+                return;
+            }
+            }
+
+          Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
                 Venue.add(newVenue);
                 MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
 
-
-                
+  
 
   }
 
