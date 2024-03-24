@@ -30,44 +30,34 @@ public class VenueHireSystem {
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
         
-        
-
-        
         if (venueName.trim().isEmpty()) {
           MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
           return;
         } 
         
-        try { 
+
+           try { 
             int tempNum = Integer.parseInt(capacityInput);
-            if (tempNum < 0) {
-              MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", "positive", "number");
-            } else {
+            
+            if (tempNum >= 0) {
+              
               Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
-              Venue.add(newVenue);
-              MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
-            }
-          } catch(Exception e) {
-            MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", "", "number");
-          } 
-
-          try {
-            int tempNum = Integer.parseInt(hireFeeInput);
-            if (tempNum < 0) {
-              MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "positive", "number");
+                Venue.add(newVenue);
+                MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+                return;
             } else {
-              Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
-              Venue.add(newVenue);
-              MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+              MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
+              return;
             }
-          } catch(Exception e) {
-            MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "", "number");
-          }
+              
+            } catch(Exception e) {
+             MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity" );
+             return;
+           } 
 
-          /*Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
-          Venue.add(newVenue);
-          MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
-        */
+
+         
+        
         
         
 
