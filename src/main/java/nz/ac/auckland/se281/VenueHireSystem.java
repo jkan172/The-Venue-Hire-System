@@ -39,29 +39,35 @@ public class VenueHireSystem {
            try { 
             int tempNum = Integer.parseInt(capacityInput);
             
-            if (tempNum >= 0) {
-              
-              Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
-                Venue.add(newVenue);
-                MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
-                return;
-            } else {
+            if (tempNum < 0 ) {
               MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
-              return;
-            }
+                return;
               
-            } catch(Exception e) {
+            } 
+              
+            } catch(NumberFormatException e) {
              MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity" );
+             return;
+            } 
+
+           try { 
+            int tempNum2 = Integer.parseInt(hireFeeInput); 
+            
+            if (tempNum2 < 0) {
+              MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive");
+                return;
+            } 
+            } catch(NumberFormatException e) {
+             MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee" );
              return;
            } 
 
+           Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
+                Venue.add(newVenue);
+                MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+                return;
+        
 
-         
-        
-        
-        
-
-      
   }
 
 
