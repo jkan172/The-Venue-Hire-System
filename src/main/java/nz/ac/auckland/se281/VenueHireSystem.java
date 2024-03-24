@@ -36,11 +36,38 @@ public class VenueHireSystem {
         if (venueName.trim().isEmpty()) {
           MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
           return;
-        } else {
-          Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
+        } 
+        
+        try { 
+            int tempNum = Integer.parseInt(capacityInput);
+            if (tempNum < 0) {
+              MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", "positive", "number");
+            } else {
+              Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
+              Venue.add(newVenue);
+              MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+            }
+          } catch(Exception e) {
+            MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", "", "number");
+          } 
+
+          try {
+            int tempNum = Integer.parseInt(hireFeeInput);
+            if (tempNum < 0) {
+              MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "positive", "number");
+            } else {
+              Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
+              Venue.add(newVenue);
+              MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+            }
+          } catch(Exception e) {
+            MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "", "number");
+          }
+
+          /*Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
           Venue.add(newVenue);
           MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
-        }
+        */
         
         
 
