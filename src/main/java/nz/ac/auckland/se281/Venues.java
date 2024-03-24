@@ -7,7 +7,7 @@ public class Venues {
 
     public Venues(String venueName, String venueCode, String capacityInput, String hireFeeInput) { 
         this.venueName = venueName;
-        //this.venueCode = venueCode;
+        this.venueCode = venueCode;
         
      }
 
@@ -18,6 +18,7 @@ public class Venues {
       public String getVenueCode() {
         return venueCode;
       }
+      
 
 
     

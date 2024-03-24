@@ -29,23 +29,24 @@ public class VenueHireSystem {
 
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
+        
+        
 
-       /*  if (Venues.getVenueName().isEmpty()) {
+        
+        if (venueName.trim().isEmpty()) {
           MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
+          return;
         } else {
-          MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(getVenueName(), venueCode);
-        }*/ 
+          Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
+          Venue.add(newVenue);
+          MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+        }
+        
+        
 
-        Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
-        Venue.add(newVenue);
-        MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
       
   }
 
-  private char getVenueName() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getVenueName'");
-  }
 
   public void setSystemDate(String dateInput) {
     // TODO implement this method
