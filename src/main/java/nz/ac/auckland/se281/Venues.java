@@ -31,10 +31,5 @@ public class Venues {
         return hireFeeInput;
       }
       
-
-
-    
-
-    
   
 }
