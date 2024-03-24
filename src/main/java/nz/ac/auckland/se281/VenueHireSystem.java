@@ -1,5 +1,8 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import nz.ac.auckland.se281.Types.CateringType;
 import nz.ac.auckland.se281.Types.FloralType;
 
@@ -7,13 +10,41 @@ public class VenueHireSystem {
 
   public VenueHireSystem() {}
 
+  private static List<Venues> Venue = new ArrayList<Venues>();
+
   public void printVenues() {
-    MessageCli.NO_VENUES.printMessage();
+
+    /**if (Venues.isEmpty()) {
+      MessageCli.NO_VENUES.printMessage();
+  
+    } else {
+      for (Venues venue : Venues.getVenues()) {
+        MessageCli.VENUE_ENTRY.printMessage(
+            venue.getVenueName(),
+            venue.getVenueCode(),
+            
+    }*/
+    
   }
 
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
-      MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+
+       /*  if (Venues.getVenueName().isEmpty()) {
+          MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
+        } else {
+          MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(getVenueName(), venueCode);
+        }*/ 
+
+        Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
+        Venue.add(newVenue);
+        MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+      
+  }
+
+  private char getVenueName() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getVenueName'");
   }
 
   public void setSystemDate(String dateInput) {
