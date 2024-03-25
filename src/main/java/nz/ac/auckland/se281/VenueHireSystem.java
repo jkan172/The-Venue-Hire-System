@@ -10,20 +10,57 @@ public class VenueHireSystem {
 
   public VenueHireSystem() {}
 
-  private static List<Venues> Venue = new ArrayList<Venues>();
+
+  private List<Venues> Venue = new ArrayList<Venues>();
 
   public void printVenues() {
 
-    /**if (Venues.isEmpty()) {
+    int numVenues = Venue.size();
+
+    if(numVenues == 0) {
       MessageCli.NO_VENUES.printMessage();
-  
-    } else {
-      for (Venues venue : Venues.getVenues()) {
-        MessageCli.VENUE_ENTRY.printMessage(
-            venue.getVenueName(),
-            venue.getVenueCode(),
-            
-    }*/
+      return;
+    }
+
+    switch (numVenues) {
+      case 1:
+      MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
+      MessageCli.VENUE_ENTRY.printMessage(Venue.get(0).getVenueName(), Venue.get(0).getVenueCode(), Venue.get(0).getCapacityInput(), Venue.get(0).getHireFeeInput());
+        break;
+      case 2:
+      MessageCli.NUMBER_VENUES.printMessage("are", String.valueOf(numVenues), "s");
+        break;
+      case 3:
+      MessageCli.NUMBER_VENUES.printMessage("are", String.valueOf(numVenues), "s");
+        break;
+      case 4:
+      MessageCli.NUMBER_VENUES.printMessage("are", String.valueOf(numVenues), "s");
+        break;
+      case 5:
+      MessageCli.NUMBER_VENUES.printMessage("are", String.valueOf(numVenues), "s");
+        break;
+      case 6:
+      MessageCli.NUMBER_VENUES.printMessage("are", String.valueOf(numVenues), "s");
+        break;
+      case 7:
+      MessageCli.NUMBER_VENUES.printMessage("are", String.valueOf(numVenues), "s");
+        break;
+      case 8:
+      MessageCli.NUMBER_VENUES.printMessage("are", String.valueOf(numVenues), "s");
+        break;
+      case 9:
+        MessageCli.NUMBER_VENUES.printMessage("are", String.valueOf(numVenues), "s");
+        break;
+      case 10:
+        MessageCli.NUMBER_VENUES.printMessage("are", "10", "s");
+        break;
+      case 11:
+        MessageCli.NUMBER_VENUES.printMessage("are", "11", "s");
+        break;
+      case 12:
+        MessageCli.NUMBER_VENUES.printMessage("are", "12", "s");
+        break;
+    }
     
   }
 
