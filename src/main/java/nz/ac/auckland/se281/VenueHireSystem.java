@@ -108,7 +108,7 @@ public class VenueHireSystem {
             } 
               
             } catch(NumberFormatException e) {
-             MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity must be a number." );
+             MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", "" );
              return;
             } 
 
@@ -120,7 +120,7 @@ public class VenueHireSystem {
                   return;
               } 
             } catch(NumberFormatException e) {
-                MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee must be a number." );
+                MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
                 return;
             } 
 
