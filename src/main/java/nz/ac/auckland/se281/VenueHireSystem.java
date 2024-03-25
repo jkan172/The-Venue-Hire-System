@@ -101,7 +101,7 @@ public class VenueHireSystem {
            try { 
             int tempNum = Integer.parseInt(capacityInput);
             
-            if (tempNum < 0 ) {
+            if (tempNum < 1 ) {
               MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
                 return;
               
@@ -115,7 +115,7 @@ public class VenueHireSystem {
            try { 
               int tempNum2 = Integer.parseInt(hireFeeInput); 
             
-              if (tempNum2 < 0) {
+              if (tempNum2 < 1) {
                   MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive");
                   return;
               } 
