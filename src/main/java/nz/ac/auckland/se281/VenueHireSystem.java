@@ -12,7 +12,7 @@ public class VenueHireSystem {
 
 
   private List<Venues> Venue = new ArrayList<Venues>();
-  private int countVenue = 0;
+  
 
   public void printVenues() {
 
@@ -63,8 +63,10 @@ public class VenueHireSystem {
         MessageCli.VENUE_ENTRY.printMessage(Venue.get(8).getVenueName(), Venue.get(8).getVenueCode(), Venue.get(8).getCapacityInput(), Venue.get(8).getHireFeeInput());
         break;
       default:
-        MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(countVenue), "s");
-      
+      for (int i = 0; i < numVenues; i++) {
+        MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(numVenues), "s");
+        MessageCli.VENUE_ENTRY.printMessage(Venue.get(i).getVenueName(), Venue.get(i).getVenueCode(), Venue.get(i).getCapacityInput(), Venue.get(i).getHireFeeInput());
+      }
      }
     
   }
@@ -113,7 +115,6 @@ public class VenueHireSystem {
 
           Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
                 Venue.add(newVenue);
-                countVenue++;
                 MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
 
   
