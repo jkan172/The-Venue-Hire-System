@@ -23,8 +23,6 @@ public class VenueHireSystem {
       return;
     }
 
-   
-
     switch (numVenues) {
       case 1:
         MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
@@ -97,7 +95,6 @@ public class VenueHireSystem {
           return;
         } 
         
-
            try { 
             int tempNum = Integer.parseInt(capacityInput);
             
@@ -134,9 +131,6 @@ public class VenueHireSystem {
           Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
                 Venue.add(newVenue);
                 MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
-
-  
-
   }
 
 
