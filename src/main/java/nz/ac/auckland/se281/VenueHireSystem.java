@@ -158,7 +158,21 @@ public class VenueHireSystem {
 
   public void makeBooking(String[] options) {
     
+    // if (options[1].isEmpty()) {
+    //   MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
+    //   return;
+    // }
+    
+    String venueCode = options[0];
+    int RequestedDate = Integer.parseInt(options[1]);
+    String CustomerEmail = options[2];
+    int numOfAttendees = Integer.parseInt(options[3]);
 
+
+    System.out.println("Venue Code:" + venueCode);
+    System.out.println("Requested date in DD/MM/YYYY format:" + RequestedDate);
+    System.out.println("Customer Email:" + CustomerEmail);
+    System.out.println("Number of Attendees:" + numOfAttendees);
 
   }
 
