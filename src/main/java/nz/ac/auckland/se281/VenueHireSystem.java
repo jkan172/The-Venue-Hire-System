@@ -10,8 +10,9 @@ public class VenueHireSystem {
 
   public VenueHireSystem() {}
 
-
+  //make a new array list of type Venues
   private List<Venues> Venue = new ArrayList<Venues>();
+  private String systemDate;
   
 
   public void printVenues() {
@@ -23,6 +24,7 @@ public class VenueHireSystem {
       return;
     }
 
+    //using switch statement to print the number of venues
     switch (numVenues) {
       case 1:
         MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
@@ -78,6 +80,7 @@ public class VenueHireSystem {
           MessageCli.VENUE_ENTRY.printMessage(Venue.get(i).getVenueName(), Venue.get(i).getVenueCode(), Venue.get(i).getCapacityInput(), Venue.get(i).getHireFeeInput());
         }
         break;
+        //default case for more than 9 venues
       default:
         MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(numVenues), "s");
         for (int i = 0; i < numVenues; i++) {  
@@ -89,12 +92,12 @@ public class VenueHireSystem {
 
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
-        
+        //if the venue name is empty, print the message and return
         if (venueName.trim().isEmpty()) {
           MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
           return;
         } 
-        
+        //if the capacity or hire fee is not a number, print the message and return
            try { 
             int tempNum = Integer.parseInt(capacityInput);
             
@@ -120,33 +123,43 @@ public class VenueHireSystem {
                 MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
                 return;
             } 
-
+            //if the venue code already exists, print the message and return
             for (Venues venue : Venue) {
               if (venue.getVenueCode().equals(venueCode)) {
               MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, venue.getVenueName());
                 return;
             }
             }
-
+            //create a new venue and add it to the list
           Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
                 Venue.add(newVenue);
                 MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
   }
 
-
+  
   public void setSystemDate(String dateInput) {
     
+    this.systemDate = dateInput;
     MessageCli.DATE_SET.printMessage(dateInput);
     return;
 
   }
 
+  
   public void printSystemDate() {
-    // TODO implement this method
+
+    if (systemDate == null) {
+      MessageCli.CURRENT_DATE.printMessage("not set");
+    } else {
+      MessageCli.CURRENT_DATE.printMessage(systemDate);
+    }
+    
   }
 
   public void makeBooking(String[] options) {
-    // TODO implement this method
+    
+
+
   }
 
   public void printBookings(String venueCode) {
