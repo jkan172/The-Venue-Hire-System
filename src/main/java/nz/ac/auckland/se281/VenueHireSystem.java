@@ -185,7 +185,9 @@ public class VenueHireSystem {
     System.out.println("Customer Email:" + CustomerEmail);
     System.out.println("Number of Attendees:" + numOfAttendees);
 
+    
 
+    MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), "venueName", date, options[3]);
     // for (int i = 0; i < options.length; i++) {
     //   String value = options[i];
     //   System.out.println("option " + i + " = " + value);
