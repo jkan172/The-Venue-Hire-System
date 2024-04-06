@@ -168,8 +168,8 @@ public class VenueHireSystem {
       return;
     }
     
-    // if (options[1].isEmpty()) {
-    //   MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
+    // if (options[0].isEmpty()) {
+    //   MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage();
     //   return;
     // }
     
@@ -182,13 +182,24 @@ public class VenueHireSystem {
     String CustomerEmail = options[2];
     int numOfAttendees = Integer.parseInt(options[3]);
 
+     boolean venueFound = false;
+    for(Venues venues: Venue) {
+      if (venues.getVenueCode().equals(venueCode)) {
+        venueFound = true;
+        break;
+      } 
+      if (!venueFound) {
+        MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(venueCode);
+        return;
+      }
+    }
 
     System.out.println("Venue Code:" + venueCode);
     System.out.println("Requested date in DD/MM/YYYY format:" + date);
     System.out.println("Customer Email:" + CustomerEmail);
     System.out.println("Number of Attendees:" + numOfAttendees);
 
-    
+     
 
     MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), "venueName", date, options[3]);
     // for (int i = 0; i < options.length; i++) {
