@@ -188,11 +188,12 @@ public class VenueHireSystem {
         venueFound = true;
         break;
       } 
+    }
       if (!venueFound) {
         MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(venueCode);
         return;
       }
-    }
+    
 
     System.out.println("Venue Code:" + venueCode);
     System.out.println("Requested date in DD/MM/YYYY format:" + date);
