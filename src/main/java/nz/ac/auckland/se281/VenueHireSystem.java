@@ -162,6 +162,11 @@ public class VenueHireSystem {
       MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
       return;
     }
+
+    if (Venue.size() ==0) {
+      MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
+      return;
+    }
     
     // if (options[1].isEmpty()) {
     //   MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
@@ -169,13 +174,11 @@ public class VenueHireSystem {
     // }
     
     String venueCode = options[0];
-    //int RequestedDate = Integer.parseInt(options[1]);
     String date = options[1];
     String[] dateParts = date.split("/");
-    String day = dateParts[0];   // "26"
-    String month = dateParts[1]; // "02"
-    String year = dateParts[2];  // "2024"
-    
+    String day = dateParts[0];   // "day"
+    String month = dateParts[1]; // "month"
+    String year = dateParts[2];  // "year"
     String CustomerEmail = options[2];
     int numOfAttendees = Integer.parseInt(options[3]);
 
