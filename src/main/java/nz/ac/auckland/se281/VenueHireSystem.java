@@ -215,34 +215,35 @@ public class VenueHireSystem {
       return;
     }
 
-    if (date.compareTo(systemDate) < 0) {
+    if (date.compareTo(systemDate) <= 0) {
       MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(date, systemDate);
       return;
     }
 
 
     for (Venues venues: Venue){
-    for (Booking bookings: Bookings) { 
-      if (bookings.getBookingVenueCode().equals(venueCode) && bookings.getDate().equals(date)) {
-        MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venues.getVenueName(), date);
-        return;
-      }
-    }
-      // if (Bookings.contains(options[0]) && Bookings.contains(date)) {
-      //   MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venues.getVenueName(), date);
-      //   return;
-      // }
+      for (Booking bookings: Bookings) { 
+        if (bookings.getBookingVenueCode().equals(venueCode) && bookings.getDate().equals(date)) {
+          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venues.getVenueName(), date);
+          return;
+        }
+      } 
     }
   
 
-    Booking newBooking = new Booking(venueCode, date, customerEmail, String.valueOf(numOfAttendees));
-    Bookings.add(newBooking);
+    for (Venues venues: Venue) {
+      Booking newBooking = new Booking(venues.getVenueName(), options[0], date, customerEmail, String.valueOf(numOfAttendees));
+      Bookings.add(newBooking);
+    }
+
+    // Booking newBooking = new Booking(options[0], date, customerEmail, String.valueOf(numOfAttendees));
+    // Bookings.add(newBooking);
 
 
     for(Venues venues: Venue) {
       if (venues.getVenueCode().equals(venueCode)) {
         MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venues.getVenueName(), date, options[3]);
-    return;
+        return;
       }
     }
 
