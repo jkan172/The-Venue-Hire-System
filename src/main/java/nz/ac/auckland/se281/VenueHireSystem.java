@@ -159,15 +159,15 @@ public class VenueHireSystem {
 
   public void makeBooking(String[] options) {
 
-    // if (systemDate == null) {
-    //   MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
-    //   return;
-    // }
+    if (systemDate == null) {
+      MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
+      return;
+    }
 
-    // if (Venue.size() == 0) {
-    //   MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
-    //   return;
-    // }
+    if (Venue.size() == 0) {
+      MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
+      return;
+    }
     
     String venueCode = options[0];
     String date = options[1];
@@ -186,35 +186,45 @@ public class VenueHireSystem {
     System.out.println("Number of Attendees:" + numOfAttendees);
 
 
+    // for (Venues venues: Venue) {
+    //   int venueCapacity = Integer.parseInt(venues.getCapacityInput());
+    //     if (numOfAttendees < (0.25 * venueCapacity)) {
+
+    //       MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], String.valueOf((int)(0.25 * venueCapacity)), venues.getCapacityInput());
+    //       numOfAttendees = (int)(0.25 * venueCapacity);
+    //       MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venues.getVenueName(), date, String.valueOf((int)(0.25 * venueCapacity)));
+    //       return;
+
+    //     } else if (numOfAttendees > venueCapacity) {
+    //       MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], venues.getCapacityInput(), venues.getCapacityInput());
+    //       numOfAttendees = venueCapacity;
+    //       MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venues.getVenueName(), date, String.valueOf(numOfAttendees));
+    //       return;
+    //     }
+    // }
+
+     boolean venueFound = false;
+  for(Venues venues: Venue) {
+      if (venues.getVenueCode().equals(venueCode)) {
+        venueFound = true;
+        break;
+      }
+    }
+    if (!venueFound) {
+      MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options[0]);
+      return;
+    }
+
+    if (date.compareTo(systemDate) < 0) {
+      MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(date, systemDate);
+      return;
+    }
+
   //   for (Venues venues: Venue) {
-  //     int venueCapacity = Integer.parseInt(venues.getCapacityInput());
-  //       if (numOfAttendees < 0.25 * venueCapacity) {
-
-  //         MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], String.valueOf((int)(0.25 * venueCapacity)), venues.getCapacityInput());
-  //         numOfAttendees = (int)(0.25 * venueCapacity);
-  //         MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venues.getVenueName(), date, String.valueOf((int)(0.25 * venueCapacity)));
-  //         return;
-
-  //       } else if (numOfAttendees > venueCapacity) {
-  //         MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], venues.getCapacityInput(), venues.getCapacityInput());
-  //         numOfAttendees = venueCapacity;
-  //         MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venues.getVenueName(), date, String.valueOf(numOfAttendees));
-  //         return;
-  //       }
+  //   if (Bookings.contains(venueCode) && Bookings.contains(date)) {
+  //     MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venues.getVenueName(), date);
+  //   }
   // }
-
-  //    boolean venueFound = false;
-  // for(Venues venues: Venue) {
-  //     if (venues.getVenueCode().equals(venueCode)) {
-  //       venueFound = true;
-  //       break;
-  //     }
-  //      break; 
-  //   }
-  //   if (!venueFound) {
-  //     MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options[0]);
-  //     return;
-  //   }
 
     for(Venues venues: Venue) {
       if (venues.getVenueCode().equals(venueCode)) {
@@ -231,7 +241,7 @@ public class VenueHireSystem {
 
 
 
-                
+
     // for (int i = 0; i < options.length; i++) {
     //   String value = options[i];
     //   System.out.println("option " + i + " = " + value);
