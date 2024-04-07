@@ -13,7 +13,7 @@ public class VenueHireSystem {
   //make a new array list of type Venues
   private List<Venues> Venue = new ArrayList<Venues>();
   private String systemDate;
-  private List<String> Bookings = new ArrayList<String>();
+  private List<Booking> Bookings = new ArrayList<Booking>();
   
 
   public void printVenues() {
@@ -220,11 +220,24 @@ public class VenueHireSystem {
       return;
     }
 
-  //   for (Venues venues: Venue) {
-  //   if (Bookings.contains(venueCode) && Bookings.contains(date)) {
-  //     MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venues.getVenueName(), date);
-  //   }
-  // }
+
+    for (Venues venues: Venue){
+    for (Booking bookings: Bookings) { 
+      if (bookings.getBookingVenueCode().equals(venueCode) && bookings.getDate().equals(date)) {
+        MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venues.getVenueName(), date);
+        return;
+      }
+    }
+      // if (Bookings.contains(options[0]) && Bookings.contains(date)) {
+      //   MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venues.getVenueName(), date);
+      //   return;
+      // }
+    }
+  
+
+    Booking newBooking = new Booking(venueCode, date, customerEmail, String.valueOf(numOfAttendees));
+    Bookings.add(newBooking);
+
 
     for(Venues venues: Venue) {
       if (venues.getVenueCode().equals(venueCode)) {
@@ -232,13 +245,6 @@ public class VenueHireSystem {
     return;
       }
     }
-    
-    //Venues newBookings = new (venueCode, date, CustomerEmail, numOfAttendees);
-                Bookings.add(venueCode);
-                Bookings.add(date);
-                Bookings.add(customerEmail);
-                Bookings.add(options[3]);
-
 
 
 
