@@ -158,6 +158,7 @@ public class VenueHireSystem {
   }
 
   public void makeBooking(String[] options) {
+    
 
     if (systemDate == null) {
       MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
@@ -169,7 +170,7 @@ public class VenueHireSystem {
       return;
     }
     
-    String venueCode = options[0];
+    String venueCode2 = options[0];
     String date = options[1];
     //---------------------------------
     String[] dateParts = date.split("/");
@@ -180,34 +181,44 @@ public class VenueHireSystem {
     String customerEmail = options[2];
     int numOfAttendees = Integer.parseInt(options[3]);
 
-    System.out.println("Venue Code:" + venueCode);
+    System.out.println("Venue Code:" + venueCode2);
     System.out.println("Requested date in DD/MM/YYYY format:" + date);
     System.out.println("Customer Email:" + customerEmail);
     System.out.println("Number of Attendees:" + numOfAttendees);
 
 
-    // for (Venues venues: Venue) {
-    //   int venueCapacity = Integer.parseInt(venues.getCapacityInput());
-    //     if (numOfAttendees < (0.25 * venueCapacity)) {
+    
 
-    //       MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], String.valueOf((int)(0.25 * venueCapacity)), venues.getCapacityInput());
-    //       numOfAttendees = (int)(0.25 * venueCapacity);
-    //       MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venues.getVenueName(), date, String.valueOf((int)(0.25 * venueCapacity)));
-    //       return;
+    for (Venues venue: Venue) {
+      if (venue.getVenueCode().equals(venueCode2)) {
+      int venueCapacity = Integer.parseInt(venue.getCapacityInput());
+      
+        if (numOfAttendees < (venueCapacity/4)) {
+          numOfAttendees = (venueCapacity/4);
+          MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], String.valueOf(venueCapacity/4), venue.getCapacityInput());
+          
+        } else if (numOfAttendees > venueCapacity) {
+          numOfAttendees = venueCapacity;
+          MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], venue.getCapacityInput(), venue.getCapacityInput());
+          
+        }
+      }
+    }
 
-    //     } else if (numOfAttendees > venueCapacity) {
-    //       MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(options[3], venues.getCapacityInput(), venues.getCapacityInput());
-    //       numOfAttendees = venueCapacity;
-    //       MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venues.getVenueName(), date, String.valueOf(numOfAttendees));
-    //       return;
-    //     }
-    // }
-
+      for (Venues venue: Venue){
+      for (Booking bookings: Bookings) { 
+        if (bookings.getBookingVenueCode().equals(venueCode2) && bookings.getDate().equals(date)) {
+          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venue.getVenueName(), date);
+          return;
+        }
+      } 
+    }
+    
      boolean venueFound = false;
-  for(Venues venues: Venue) {
-      if (venues.getVenueCode().equals(venueCode)) {
-        venueFound = true;
-        break;
+    for(Venues venues: Venue) {
+      if (venues.getVenueCode().equals(venueCode2)) {
+          venueFound = true;
+          break;
       }
     }
     if (!venueFound) {
@@ -215,37 +226,30 @@ public class VenueHireSystem {
       return;
     }
 
-    if (date.compareTo(systemDate) <= 0) {
+    if (date.compareTo(systemDate) < 0) {
       MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(date, systemDate);
       return;
     }
 
 
-    for (Venues venues: Venue){
-      for (Booking bookings: Bookings) { 
-        if (bookings.getBookingVenueCode().equals(venueCode) && bookings.getDate().equals(date)) {
-          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venues.getVenueName(), date);
-          return;
-        }
-      } 
-    }
+    // for(Venues venue: Venue) {
+    //   if (venue.getVenueCode().equals(venueCode2)) {
+    //     Booking newBooking = new Booking(venueCode2, date, customerEmail, String.valueOf(numOfAttendees));
+    //     Bookings.add(newBooking);
+    //     break;
+    //   }
+    // }
+    
+      Booking newBooking = new Booking(venueCode2, date, customerEmail, String.valueOf(numOfAttendees));
+      Bookings.add(newBooking);
   
 
-    for (Venues venues: Venue) {
-      Booking newBooking = new Booking(venues.getVenueName(), options[0], date, customerEmail, String.valueOf(numOfAttendees));
-      Bookings.add(newBooking);
-    }
-
-    // Booking newBooking = new Booking(options[0], date, customerEmail, String.valueOf(numOfAttendees));
-    // Bookings.add(newBooking);
-
-
-    for(Venues venues: Venue) {
-      if (venues.getVenueCode().equals(venueCode)) {
-        MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venues.getVenueName(), date, options[3]);
-        return;
-      }
-    }
+     for(Venues venue: Venue) {
+        if (venue.getVenueCode().equals(venueCode2)) {
+        MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(BookingReferenceGenerator.generateBookingReference(), venue.getVenueName(), date, String.valueOf(numOfAttendees));
+         break;
+       }
+     }
 
 
 
