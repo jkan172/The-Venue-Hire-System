@@ -212,11 +212,6 @@ public class VenueHireSystem {
     String customerEmail = options[2];
     int numOfAttendees = Integer.parseInt(options[3]);
 
-    // System.out.println("Venue Code:" + venueCode2);
-    // System.out.println("Requested date in DD/MM/YYYY format:" + date);
-    // System.out.println("Customer Email:" + customerEmail);
-    // System.out.println("Number of Attendees:" + numOfAttendees);
-
     for (Venues venue : Venue) {
       if (venue.getVenueCode().equals(venueCode2)) {
         int venueCapacity = Integer.parseInt(venue.getCapacityInput());
@@ -236,13 +231,6 @@ public class VenueHireSystem {
 
     for (Venues venue : Venue) {
       for (Booking bookings : Bookings) {
-        // if (bookings.getBookingVenueCode().equals(venueCode2) && bookings.getDate().equals(date))
-        // {
-        //   MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venue.getVenueName(),
-        // date);
-        //   return;
-        // }
-
         if (venue.getVenueCode().equals(venueCode2) && bookings.getDate().equals(date)) {
           MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venue.getVenueName(), date);
           return;
@@ -267,15 +255,7 @@ public class VenueHireSystem {
       return;
     }
 
-    // for(Venues venue: Venue) {
-    //   if (venue.getVenueCode().equals(venueCode2)) {
-    //     Booking newBooking = new Booking(venueCode2, date, customerEmail,
-    // String.valueOf(numOfAttendees));
-    //     Bookings.add(newBooking);
-    //     break;
-    //   }
-    // }
-
+    // create a new booking and add it to the Booking array list
     Booking newBooking =
         new Booking(venueCode2, date, customerEmail, String.valueOf(numOfAttendees));
     Bookings.add(newBooking);
