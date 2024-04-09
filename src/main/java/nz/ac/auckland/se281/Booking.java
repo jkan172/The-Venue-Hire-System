@@ -6,17 +6,13 @@ public class Booking {
   private String date;
   private String customerEmail;
   private String numOfAttendees;
-  
 
-  public Booking(String venueCode, String date, String customerEmail , String numOfAttendees)
-  
-  {
-    
+  public Booking(String venueCode, String date, String customerEmail, String numOfAttendees) {
+
     this.venueCode = venueCode;
     this.date = date;
     this.customerEmail = customerEmail;
     this.numOfAttendees = numOfAttendees;
-
   }
 
   public String getBookingVenueCode() {
@@ -26,5 +22,4 @@ public class Booking {
   public String getDate() {
     return date;
   }
-
 }
