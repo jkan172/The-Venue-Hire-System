@@ -13,6 +13,7 @@ public class VenueHireSystem {
   private List<Venues> venue = new ArrayList<Venues>();
   private String systemDate;
   private List<Booking> bookings = new ArrayList<Booking>();
+  private String nextAvailableDate;
 
   public void printVenues() {
 
@@ -32,7 +33,8 @@ public class VenueHireSystem {
               venue.get(i).getVenueName(),
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
-              venue.get(i).getHireFeeInput());
+              venue.get(i).getHireFeeInput(),
+              nextAvailableDate);
         }
         break;
       case 2:
@@ -268,6 +270,15 @@ public class VenueHireSystem {
             venues.getVenueName(),
             date,
             String.valueOf(numOfAttendees));
+        break;
+      }
+    }
+
+    // Next available date
+    for (Venues venues : venue) {
+      if (venues.getVenueCode().equals(venueCode2)) {
+        int nextDay = Integer.parseInt(day) + 1;
+        nextAvailableDate = String.valueOf(nextDay) + "/" + dateParts[1] + "/" + dateParts[2];
         break;
       }
     }
