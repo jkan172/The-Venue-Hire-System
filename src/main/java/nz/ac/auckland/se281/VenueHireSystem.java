@@ -10,13 +10,13 @@ public class VenueHireSystem {
   public VenueHireSystem() {}
 
   // make a new array list of type Venues
-  private List<Venues> Venue = new ArrayList<Venues>();
+  private List<Venues> venue = new ArrayList<Venues>();
   private String systemDate;
-  private List<Booking> Bookings = new ArrayList<Booking>();
+  private List<Booking> bookings = new ArrayList<Booking>();
 
   public void printVenues() {
 
-    int numVenues = Venue.size();
+    int numVenues = venue.size();
 
     if (numVenues == 0) {
       MessageCli.NO_VENUES.printMessage();
@@ -29,90 +29,90 @@ public class VenueHireSystem {
         MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
         for (int i = 0; i < numVenues; i++) {
           MessageCli.VENUE_ENTRY.printMessage(
-              Venue.get(i).getVenueName(),
-              Venue.get(i).getVenueCode(),
-              Venue.get(i).getCapacityInput(),
-              Venue.get(i).getHireFeeInput());
+              venue.get(i).getVenueName(),
+              venue.get(i).getVenueCode(),
+              venue.get(i).getCapacityInput(),
+              venue.get(i).getHireFeeInput());
         }
         break;
       case 2:
         MessageCli.NUMBER_VENUES.printMessage("are", "two", "s");
         for (int i = 0; i < numVenues; i++) {
           MessageCli.VENUE_ENTRY.printMessage(
-              Venue.get(i).getVenueName(),
-              Venue.get(i).getVenueCode(),
-              Venue.get(i).getCapacityInput(),
-              Venue.get(i).getHireFeeInput());
+              venue.get(i).getVenueName(),
+              venue.get(i).getVenueCode(),
+              venue.get(i).getCapacityInput(),
+              venue.get(i).getHireFeeInput());
         }
         break;
       case 3:
         MessageCli.NUMBER_VENUES.printMessage("are", "three", "s");
         for (int i = 0; i < numVenues; i++) {
           MessageCli.VENUE_ENTRY.printMessage(
-              Venue.get(i).getVenueName(),
-              Venue.get(i).getVenueCode(),
-              Venue.get(i).getCapacityInput(),
-              Venue.get(i).getHireFeeInput());
+              venue.get(i).getVenueName(),
+              venue.get(i).getVenueCode(),
+              venue.get(i).getCapacityInput(),
+              venue.get(i).getHireFeeInput());
         }
         break;
       case 4:
         MessageCli.NUMBER_VENUES.printMessage("are", "four", "s");
         for (int i = 0; i < numVenues; i++) {
           MessageCli.VENUE_ENTRY.printMessage(
-              Venue.get(i).getVenueName(),
-              Venue.get(i).getVenueCode(),
-              Venue.get(i).getCapacityInput(),
-              Venue.get(i).getHireFeeInput());
+              venue.get(i).getVenueName(),
+              venue.get(i).getVenueCode(),
+              venue.get(i).getCapacityInput(),
+              venue.get(i).getHireFeeInput());
         }
         break;
       case 5:
         MessageCli.NUMBER_VENUES.printMessage("are", "five", "s");
         for (int i = 0; i < numVenues; i++) {
           MessageCli.VENUE_ENTRY.printMessage(
-              Venue.get(i).getVenueName(),
-              Venue.get(i).getVenueCode(),
-              Venue.get(i).getCapacityInput(),
-              Venue.get(i).getHireFeeInput());
+              venue.get(i).getVenueName(),
+              venue.get(i).getVenueCode(),
+              venue.get(i).getCapacityInput(),
+              venue.get(i).getHireFeeInput());
         }
         break;
       case 6:
         MessageCli.NUMBER_VENUES.printMessage("are", "six", "s");
         for (int i = 0; i < numVenues; i++) {
           MessageCli.VENUE_ENTRY.printMessage(
-              Venue.get(i).getVenueName(),
-              Venue.get(i).getVenueCode(),
-              Venue.get(i).getCapacityInput(),
-              Venue.get(i).getHireFeeInput());
+              venue.get(i).getVenueName(),
+              venue.get(i).getVenueCode(),
+              venue.get(i).getCapacityInput(),
+              venue.get(i).getHireFeeInput());
         }
         break;
       case 7:
         MessageCli.NUMBER_VENUES.printMessage("are", "seven", "s");
         for (int i = 0; i < numVenues; i++) {
           MessageCli.VENUE_ENTRY.printMessage(
-              Venue.get(i).getVenueName(),
-              Venue.get(i).getVenueCode(),
-              Venue.get(i).getCapacityInput(),
-              Venue.get(i).getHireFeeInput());
+              venue.get(i).getVenueName(),
+              venue.get(i).getVenueCode(),
+              venue.get(i).getCapacityInput(),
+              venue.get(i).getHireFeeInput());
         }
         break;
       case 8:
         MessageCli.NUMBER_VENUES.printMessage("are", "eight", "s");
         for (int i = 0; i < numVenues; i++) {
           MessageCli.VENUE_ENTRY.printMessage(
-              Venue.get(i).getVenueName(),
-              Venue.get(i).getVenueCode(),
-              Venue.get(i).getCapacityInput(),
-              Venue.get(i).getHireFeeInput());
+              venue.get(i).getVenueName(),
+              venue.get(i).getVenueCode(),
+              venue.get(i).getCapacityInput(),
+              venue.get(i).getHireFeeInput());
         }
         break;
       case 9:
         MessageCli.NUMBER_VENUES.printMessage("are", "nine", "s");
         for (int i = 0; i < numVenues; i++) {
           MessageCli.VENUE_ENTRY.printMessage(
-              Venue.get(i).getVenueName(),
-              Venue.get(i).getVenueCode(),
-              Venue.get(i).getCapacityInput(),
-              Venue.get(i).getHireFeeInput());
+              venue.get(i).getVenueName(),
+              venue.get(i).getVenueCode(),
+              venue.get(i).getCapacityInput(),
+              venue.get(i).getHireFeeInput());
         }
         break;
         // default case for more than 9 venues
@@ -120,10 +120,10 @@ public class VenueHireSystem {
         MessageCli.NUMBER_VENUES.printMessage("are", Integer.toString(numVenues), "s");
         for (int i = 0; i < numVenues; i++) {
           MessageCli.VENUE_ENTRY.printMessage(
-              Venue.get(i).getVenueName(),
-              Venue.get(i).getVenueCode(),
-              Venue.get(i).getCapacityInput(),
-              Venue.get(i).getHireFeeInput());
+              venue.get(i).getVenueName(),
+              venue.get(i).getVenueCode(),
+              venue.get(i).getCapacityInput(),
+              venue.get(i).getHireFeeInput());
         }
     }
   }
@@ -161,15 +161,15 @@ public class VenueHireSystem {
       return;
     }
     // if the venue code already exists, print the message and return
-    for (Venues venue : Venue) {
-      if (venue.getVenueCode().equals(venueCode)) {
-        MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, venue.getVenueName());
+    for (Venues venues : venue) {
+      if (venues.getVenueCode().equals(venueCode)) {
+        MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, venues.getVenueName());
         return;
       }
     }
     // create a new venue and add it to the list
     Venues newVenue = new Venues(venueName, venueCode, capacityInput, hireFeeInput);
-    Venue.add(newVenue);
+    venue.add(newVenue);
     MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
   }
 
@@ -196,7 +196,7 @@ public class VenueHireSystem {
       return;
     }
 
-    if (Venue.size() == 0) {
+    if (venue.size() == 0) {
       MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
       return;
     }
@@ -212,34 +212,35 @@ public class VenueHireSystem {
     String customerEmail = options[2];
     int numOfAttendees = Integer.parseInt(options[3]);
 
-    for (Venues venue : Venue) {
-      if (venue.getVenueCode().equals(venueCode2)) {
-        int venueCapacity = Integer.parseInt(venue.getCapacityInput());
+    for (Venues venues : venue) {
+      if (venues.getVenueCode().equals(venueCode2)) {
+        int venueCapacity = Integer.parseInt(venues.getCapacityInput());
 
         if (numOfAttendees < (venueCapacity / 4)) {
           MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
-              options[3], String.valueOf(venueCapacity / 4), venue.getCapacityInput());
+              options[3], String.valueOf(venueCapacity / 4), venues.getCapacityInput());
           numOfAttendees = (venueCapacity / 4);
 
         } else if (numOfAttendees > venueCapacity) {
           MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
-              options[3], venue.getCapacityInput(), venue.getCapacityInput());
+              options[3], venues.getCapacityInput(), venues.getCapacityInput());
           numOfAttendees = venueCapacity;
         }
       }
     }
 
-    for (Venues venue : Venue) {
-      for (Booking bookings : Bookings) {
-        if (venue.getVenueCode().equals(venueCode2) && bookings.getDate().equals(date)) {
-          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(venue.getVenueName(), date);
+    for (Venues venues : venue) {
+      for (Booking booking : bookings) {
+        if (venues.getVenueCode().equals(venueCode2) && booking.getDate().equals(date)) {
+          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(
+              venues.getVenueName(), date);
           return;
         }
       }
     }
 
     boolean venueFound = false;
-    for (Venues venues : Venue) {
+    for (Venues venues : venue) {
       if (venues.getVenueCode().equals(venueCode2)) {
         venueFound = true;
         break;
@@ -258,13 +259,13 @@ public class VenueHireSystem {
     // create a new booking and add it to the Booking array list
     Booking newBooking =
         new Booking(venueCode2, date, customerEmail, String.valueOf(numOfAttendees));
-    Bookings.add(newBooking);
+    bookings.add(newBooking);
 
-    for (Venues venue : Venue) {
-      if (venue.getVenueCode().equals(venueCode2)) {
+    for (Venues venues : venue) {
+      if (venues.getVenueCode().equals(venueCode2)) {
         MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
             BookingReferenceGenerator.generateBookingReference(),
-            venue.getVenueName(),
+            venues.getVenueName(),
             date,
             String.valueOf(numOfAttendees));
         break;
