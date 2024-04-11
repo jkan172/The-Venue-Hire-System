@@ -24,6 +24,22 @@ public class VenueHireSystem {
       return;
     }
 
+    for (Booking booking : bookings) {
+      for (Venues venues : venue) {
+        if (booking.getBookingVenueCode().equals(venues.getVenueCode())) {
+          if (booking.getDate().isEmpty()) {
+            nextAvailableDate = systemDate;
+            break;
+          }
+          // if (booking.getDate().equals(systemDate)) {
+          //   int nextDay = Integer.parseInt(systemDate.split("/")[0]) + 1;
+          //   nextAvailableDate = String.valueOf(nextDay) + "/" + systemDate.split("/")[1] + "/" +
+          // systemDate.split("/")[2];
+          // }
+        }
+      }
+    }
+
     // using switch statement to print the number of venues
     switch (numVenues) {
       case 1:
@@ -44,7 +60,8 @@ public class VenueHireSystem {
               venue.get(i).getVenueName(),
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
-              venue.get(i).getHireFeeInput());
+              venue.get(i).getHireFeeInput(),
+              nextAvailableDate);
         }
         break;
       case 3:
@@ -54,7 +71,8 @@ public class VenueHireSystem {
               venue.get(i).getVenueName(),
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
-              venue.get(i).getHireFeeInput());
+              venue.get(i).getHireFeeInput(),
+              nextAvailableDate);
         }
         break;
       case 4:
@@ -64,7 +82,8 @@ public class VenueHireSystem {
               venue.get(i).getVenueName(),
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
-              venue.get(i).getHireFeeInput());
+              venue.get(i).getHireFeeInput(),
+              nextAvailableDate);
         }
         break;
       case 5:
@@ -74,7 +93,8 @@ public class VenueHireSystem {
               venue.get(i).getVenueName(),
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
-              venue.get(i).getHireFeeInput());
+              venue.get(i).getHireFeeInput(),
+              nextAvailableDate);
         }
         break;
       case 6:
@@ -84,7 +104,8 @@ public class VenueHireSystem {
               venue.get(i).getVenueName(),
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
-              venue.get(i).getHireFeeInput());
+              venue.get(i).getHireFeeInput(),
+              nextAvailableDate);
         }
         break;
       case 7:
@@ -94,7 +115,8 @@ public class VenueHireSystem {
               venue.get(i).getVenueName(),
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
-              venue.get(i).getHireFeeInput());
+              venue.get(i).getHireFeeInput(),
+              nextAvailableDate);
         }
         break;
       case 8:
@@ -104,7 +126,8 @@ public class VenueHireSystem {
               venue.get(i).getVenueName(),
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
-              venue.get(i).getHireFeeInput());
+              venue.get(i).getHireFeeInput(),
+              nextAvailableDate);
         }
         break;
       case 9:
@@ -114,7 +137,8 @@ public class VenueHireSystem {
               venue.get(i).getVenueName(),
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
-              venue.get(i).getHireFeeInput());
+              venue.get(i).getHireFeeInput(),
+              nextAvailableDate);
         }
         break;
         // default case for more than 9 venues
@@ -125,7 +149,8 @@ public class VenueHireSystem {
               venue.get(i).getVenueName(),
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
-              venue.get(i).getHireFeeInput());
+              venue.get(i).getHireFeeInput(),
+              nextAvailableDate);
         }
     }
   }
@@ -253,9 +278,13 @@ public class VenueHireSystem {
       return;
     }
 
-    if (date.compareTo(systemDate) < 0) {
-      MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(date, systemDate);
-      return;
+    for (Venues venues : venue) {
+      if (venues.getVenueCode().equals(venueCode2)) {
+        if (date.compareTo(systemDate) < 0) {
+          MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(date, systemDate);
+          return;
+        }
+      }
     }
 
     // create a new booking and add it to the Booking array list
@@ -276,10 +305,24 @@ public class VenueHireSystem {
 
     // Next available date
     for (Venues venues : venue) {
-      if (venues.getVenueCode().equals(venueCode2)) {
-        int nextDay = Integer.parseInt(day) + 1;
-        nextAvailableDate = String.valueOf(nextDay) + "/" + dateParts[1] + "/" + dateParts[2];
-        break;
+      for (Booking booking : bookings) {
+        if (venues.getVenueCode().equals(venueCode2)) {
+          // if(bookings.isEmpty()) {
+          nextAvailableDate = systemDate;
+          // } else {
+          //   int nextDay = Integer.parseInt(day) + 1;
+          //   nextAvailableDate = String.valueOf(nextDay) + "/" + dateParts[1] + "/" +
+          // dateParts[2];
+          //   break;
+          // }
+
+          // while (booking.getDate().equals(systemDate)) {
+          //   int nextDay = Integer.parseInt(day) + 1;
+          //   nextAvailableDate = String.valueOf(nextDay) + "/" + dateParts[1] + "/" +
+          // dateParts[2];
+          //   break;
+          // }
+        }
       }
     }
 

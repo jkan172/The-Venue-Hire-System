@@ -29,4 +29,6 @@ public class Venues {
   public String getHireFeeInput() {
     return hireFeeInput;
   }
+
+  public void getNextAvailableDate() {}
 }
