@@ -12,7 +12,7 @@ public class VenueHireSystem {
   // make a new array list of type Venues
   private List<Venues> venue = new ArrayList<Venues>();
   private String systemDate;
-  private List<Booking> bookings = new ArrayList<Booking>();
+  private ArrayList<Booking> bookings = new ArrayList<Booking>();
 
   public void printVenues() {
 

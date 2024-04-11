@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Venues {
 
@@ -32,25 +32,29 @@ public class Venues {
     return hireFeeInput;
   }
 
-  public String getNextAvailableDate(String date, List<Booking> bookings) {
+  public String getNextAvailableDate(String date, ArrayList<Booking> bookings) {
     if (bookings.isEmpty()) {
       return date;
-    }
-    for (Booking booking : bookings) {
-      if (booking.getBookingVenueCode().equals(venueCode)) {
-        if (booking.getDate().equals(date)) {
+    } else {
+      for (Booking booking : bookings) {
+        if (booking.getBookingVenueCode().equals(venueCode) && booking.getDate().equals(date)) {
           // the format of the date is dd/mm/yyyy
           String[] dateParts = date.split("/");
-          String day = dateParts[0]; // "day"
-          String month = dateParts[1]; // "month"
-          String year = dateParts[2]; // "year"
+          int day = Integer.parseInt(dateParts[0]); // "day"
+          int month = Integer.parseInt(dateParts[1]); // "month"
+          int year = Integer.parseInt(dateParts[2]); // "year"
           // adding a day to the date
-          int nextDate = Integer.parseInt(day) + 1;
+          int nextDate = day + 1;
           String nextdateString = String.valueOf(nextDate) + "/" + month + "/" + year;
           date = this.getNextAvailableDate(nextdateString, bookings);
+
+          // LocalDate nextDate = LocalDate.of(year, month, day).plusDays(1);
+          // date = getNextAvailableDate(nextDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+          // bookings);
+
         }
       }
+      return date;
     }
-    return date;
   }
 }
