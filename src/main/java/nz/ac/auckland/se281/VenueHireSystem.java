@@ -14,6 +14,7 @@ public class VenueHireSystem {
   private ArrayList<Venues> venue = new ArrayList<Venues>();
   private String systemDate;
   private ArrayList<Booking> bookings = new ArrayList<Booking>();
+  private String bookingReference;
 
   public void printVenues() {
 
@@ -272,14 +273,16 @@ public class VenueHireSystem {
       return;
     }
 
-          LocalDate inputDate = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
-          LocalDate systemLocalDate = LocalDate.parse(systemDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    LocalDate inputDate =
+        LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+    LocalDate systemLocalDate =
+        LocalDate.parse(systemDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     for (Venues venues : venue) {
       if (venues.getVenueCode().equals(venueCode2)) {
-          if (inputDate.isBefore(systemLocalDate)) {
+        if (inputDate.isBefore(systemLocalDate)) {
           MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(date, systemDate);
           return;
-}
+        }
       }
     }
 
@@ -290,11 +293,9 @@ public class VenueHireSystem {
 
     for (Venues venues : venue) {
       if (venues.getVenueCode().equals(venueCode2)) {
+        bookingReference = BookingReferenceGenerator.generateBookingReference();
         MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
-            BookingReferenceGenerator.generateBookingReference(),
-            venues.getVenueName(),
-            date,
-            String.valueOf(numOfAttendees));
+            bookingReference, venues.getVenueName(), date, String.valueOf(numOfAttendees));
         break;
       }
     }
@@ -314,27 +315,58 @@ public class VenueHireSystem {
   }
 
   public void printBookings(String venueCode) {
-    for (Venues venues : venue) {
-    for (Booking booking : bookings) {
-      if (booking.getBookingVenueCode().equals(venueCode)) {
-        if (venues.getVenueCode().equals(venueCode)) {
 
-          if (booking.equals(null)) {
+    for (Venues venues : venue) {
+      if (venues.getVenueCode().equals(venueCode)) {
+        MessageCli.PRINT_BOOKINGS_HEADER.printMessage(venues.getVenueName());
+        if (bookings.isEmpty()) {
+          MessageCli.PRINT_BOOKINGS_NONE.printMessage(venues.getVenueName());
+            return;
+        }
+      } else {
+        MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+        return;
+      }
+
+      for (Booking booking : bookings) {
+        if (booking.getBookingVenueCode().equals(venueCode)) {
+          if (bookings.isEmpty()) {
             MessageCli.PRINT_BOOKINGS_NONE.printMessage(venues.getVenueName());
             return;
           } else {
-        MessageCli.PRINT_BOOKINGS_HEADER.printMessage(venues.getVenueName());
-        MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(BookingReferenceGenerator.generateBookingReference(), booking.getDate());
-        return;
+            MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(bookingReference, booking.getDate());
           }
-        } else {
-          MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
-          return;
+          // if {
+          //     MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+          //     return;
         }
       }
     }
   }
-  }
+
+  //   for (Venues venues : venue) {
+  //     for (Booking booking : bookings) {
+  //       if (booking.getBookingVenueCode().equals(venueCode) &&
+  // venues.getVenueCode().equals(venueCode)) {
+
+  //           if (booking.equals(null)) {
+  //             MessageCli.PRINT_BOOKINGS_NONE.printMessage(venues.getVenueName());
+  //             return;
+
+  //           } else {
+  //             MessageCli.PRINT_BOOKINGS_HEADER.printMessage(venues.getVenueName());
+  //             //for (int i = 0; i < bookings.size(); i++) {
+  //             MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(bookingReference, booking.getDate());
+  //             //}
+  //           }
+  //         } else {
+  //           MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+  //           return;
+  //         }
+
+  //     }
+  //   }
+  // }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
     // TODO implement this method
