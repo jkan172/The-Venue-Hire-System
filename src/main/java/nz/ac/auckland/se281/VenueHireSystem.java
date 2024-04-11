@@ -24,6 +24,10 @@ public class VenueHireSystem {
       MessageCli.NO_VENUES.printMessage();
       return;
     }
+    if (systemDate == null || systemDate.isEmpty()) {
+      MessageCli.CURRENT_DATE.printMessage("not set");
+      systemDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
 
     // using switch statement to print the number of venues
     switch (numVenues) {
@@ -318,14 +322,13 @@ public class VenueHireSystem {
   public void printBookings(String venueCode) {
     boolean venueExists = false;
 
-
     for (Venues venues : venue) {
-      //look to find the venue
+      // look to find the venue
       if (venues.getVenueCode().equals(venueCode)) {
         venueExists = true;
         MessageCli.PRINT_BOOKINGS_HEADER.printMessage(venues.getVenueName());
 
-        //look to find if there is a booking for the venue
+        // look to find if there is a booking for the venue
         boolean bookingExists = false;
         for (Booking booking : bookings) {
           if (booking.getBookingVenueCode().equals(venueCode)) {
@@ -334,14 +337,14 @@ public class VenueHireSystem {
             bookingExists = true;
           }
         }
-        //if no bookings exist for the venue
+        // if no bookings exist for the venue
         if (!bookingExists) {
           MessageCli.PRINT_BOOKINGS_NONE.printMessage(venues.getVenueName());
         }
         break;
       }
     }
-    //if the venue does not exist
+    // if the venue does not exist
     if (!venueExists) {
       MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
     }
