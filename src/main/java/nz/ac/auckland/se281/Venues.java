@@ -41,8 +41,8 @@ public class Venues {
           // the format of the date is dd/mm/yyyy
           String[] dateParts = date.split("/");
           int day = Integer.parseInt(dateParts[0]); // "day"
-          int month = Integer.parseInt(dateParts[1]); // "month"
-          int year = Integer.parseInt(dateParts[2]); // "year"
+          String month = dateParts[1]; // "month"
+          String year = dateParts[2]; // "year"
           // adding a day to the date
           int nextDate = day + 1;
           String nextdateString = String.valueOf(nextDate) + "/" + month + "/" + year;

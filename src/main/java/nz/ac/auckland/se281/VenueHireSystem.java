@@ -1,7 +1,8 @@
 package nz.ac.auckland.se281;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 import nz.ac.auckland.se281.Types.CateringType;
 import nz.ac.auckland.se281.Types.FloralType;
 
@@ -10,7 +11,7 @@ public class VenueHireSystem {
   public VenueHireSystem() {}
 
   // make a new array list of type Venues
-  private List<Venues> venue = new ArrayList<Venues>();
+  private ArrayList<Venues> venue = new ArrayList<Venues>();
   private String systemDate;
   private ArrayList<Booking> bookings = new ArrayList<Booking>();
 
@@ -33,7 +34,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
+              venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 2:
@@ -44,7 +45,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
+              venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 3:
@@ -55,7 +56,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
+              venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 4:
@@ -66,7 +67,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
+              venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 5:
@@ -77,7 +78,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
+              venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 6:
@@ -88,7 +89,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
+              venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 7:
@@ -99,7 +100,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
+              venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 8:
@@ -110,7 +111,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
+              venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 9:
@@ -121,7 +122,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
+              venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
         // default case for more than 9 venues
@@ -133,7 +134,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
+              venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
     }
   }
@@ -271,12 +272,14 @@ public class VenueHireSystem {
       return;
     }
 
+          LocalDate inputDate = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+          LocalDate systemLocalDate = LocalDate.parse(systemDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     for (Venues venues : venue) {
       if (venues.getVenueCode().equals(venueCode2)) {
-        if (date.compareTo(systemDate) < 0) {
+          if (inputDate.isBefore(systemLocalDate)) {
           MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(date, systemDate);
           return;
-        }
+}
       }
     }
 
