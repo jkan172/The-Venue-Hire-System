@@ -255,28 +255,18 @@ public class VenueHireSystem {
       }
     }
 
-   
-    
-      // boolean venueNotBooked = true;
-      for (Venues venues : venue) {
-      for (Booking booking : bookings) {
-        if (booking.getBookingVenueCode().equals(venueCode2) && booking.getDate().equals(date)) {
-          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(
-              venues.getVenueName(), date);
-              return;
-          // venueNotBooked = false;
-          // break;
+    // when the venue is already booked
+    for (Venues venues : venue) {
+      if (venues.getVenueCode().equals(venueCode2)) {
+        for (Booking booking : bookings) {
+          if (booking.getBookingVenueCode().equals(venueCode2) && booking.getDate().equals(date)) {
+            MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(
+                venues.getVenueName(), date);
+            return;
+          }
         }
       }
     }
-  //     if (!venueNotBooked){
-  //     for (Venues venues : venue) {
-  //     if (venues.getVenueCode().equals(venueCode2)) {
-  //      MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(
-  //             venues.getVenueName(), date);
-  //     }
-  //   }
-  // }
 
     boolean venueFound = false;
     for (Venues venues : venue) {
