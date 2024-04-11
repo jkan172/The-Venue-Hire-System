@@ -286,11 +286,6 @@ public class VenueHireSystem {
       }
     }
 
-    // create a new booking and add it to the Booking array list
-    Booking newBooking =
-        new Booking(venueCode2, date, customerEmail, String.valueOf(numOfAttendees));
-    bookings.add(newBooking);
-
     for (Venues venues : venue) {
       if (venues.getVenueCode().equals(venueCode2)) {
         bookingReference = BookingReferenceGenerator.generateBookingReference();
@@ -299,6 +294,12 @@ public class VenueHireSystem {
         break;
       }
     }
+
+    // create a new booking and add it to the Booking array list
+    Booking newBooking =
+        new Booking(
+            venueCode2, date, customerEmail, String.valueOf(numOfAttendees), bookingReference);
+    bookings.add(newBooking);
 
     for (Venues venues : venue) {
       if (venues.getVenueCode().equals(venueCode2)) {
@@ -315,58 +316,36 @@ public class VenueHireSystem {
   }
 
   public void printBookings(String venueCode) {
+    boolean venueExists = false;
+
 
     for (Venues venues : venue) {
+      //look to find the venue
       if (venues.getVenueCode().equals(venueCode)) {
+        venueExists = true;
         MessageCli.PRINT_BOOKINGS_HEADER.printMessage(venues.getVenueName());
-        if (bookings.isEmpty()) {
-          MessageCli.PRINT_BOOKINGS_NONE.printMessage(venues.getVenueName());
-            return;
-        }
-      } else {
-        MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
-        return;
-      }
 
-      for (Booking booking : bookings) {
-        if (booking.getBookingVenueCode().equals(venueCode)) {
-          if (bookings.isEmpty()) {
-            MessageCli.PRINT_BOOKINGS_NONE.printMessage(venues.getVenueName());
-            return;
-          } else {
-            MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(bookingReference, booking.getDate());
+        //look to find if there is a booking for the venue
+        boolean bookingExists = false;
+        for (Booking booking : bookings) {
+          if (booking.getBookingVenueCode().equals(venueCode)) {
+            MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(
+                booking.getBookingReference(), booking.getDate());
+            bookingExists = true;
           }
-          // if {
-          //     MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
-          //     return;
         }
+        //if no bookings exist for the venue
+        if (!bookingExists) {
+          MessageCli.PRINT_BOOKINGS_NONE.printMessage(venues.getVenueName());
+        }
+        break;
       }
     }
+    //if the venue does not exist
+    if (!venueExists) {
+      MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+    }
   }
-
-  //   for (Venues venues : venue) {
-  //     for (Booking booking : bookings) {
-  //       if (booking.getBookingVenueCode().equals(venueCode) &&
-  // venues.getVenueCode().equals(venueCode)) {
-
-  //           if (booking.equals(null)) {
-  //             MessageCli.PRINT_BOOKINGS_NONE.printMessage(venues.getVenueName());
-  //             return;
-
-  //           } else {
-  //             MessageCli.PRINT_BOOKINGS_HEADER.printMessage(venues.getVenueName());
-  //             //for (int i = 0; i < bookings.size(); i++) {
-  //             MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(bookingReference, booking.getDate());
-  //             //}
-  //           }
-  //         } else {
-  //           MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
-  //           return;
-  //         }
-
-  //     }
-  //   }
-  // }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
     // TODO implement this method
