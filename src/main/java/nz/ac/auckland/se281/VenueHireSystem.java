@@ -24,21 +24,21 @@ public class VenueHireSystem {
       return;
     }
 
-    for (Booking booking : bookings) {
-      for (Venues venues : venue) {
-        if (booking.getBookingVenueCode().equals(venues.getVenueCode())) {
-          if (booking.getDate().isEmpty()) {
-            nextAvailableDate = systemDate;
-            break;
-          }
-          // if (booking.getDate().equals(systemDate)) {
-          //   int nextDay = Integer.parseInt(systemDate.split("/")[0]) + 1;
-          //   nextAvailableDate = String.valueOf(nextDay) + "/" + systemDate.split("/")[1] + "/" +
-          // systemDate.split("/")[2];
-          // }
-        }
-      }
-    }
+    // for (Booking booking : bookings) {
+    //   for (Venues venues : venue) {
+    //     if (booking.getBookingVenueCode().equals(venues.getVenueCode())) {
+    //       if (booking.getDate().isEmpty()) {
+    //         nextAvailableDate = systemDate;
+    //         break;
+    //       }
+    //       // if (booking.getDate().equals(systemDate)) {
+    //       //   int nextDay = Integer.parseInt(systemDate.split("/")[0]) + 1;
+    //       //   nextAvailableDate = String.valueOf(nextDay) + "/" + systemDate.split("/")[1] + "/" +
+    //       // systemDate.split("/")[2];
+    //       // }
+    //     }
+    //   }
+    // }
 
     // using switch statement to print the number of venues
     switch (numVenues) {
@@ -303,28 +303,35 @@ public class VenueHireSystem {
       }
     }
 
-    // Next available date
-    for (Venues venues : venue) {
-      for (Booking booking : bookings) {
-        if (venues.getVenueCode().equals(venueCode2)) {
-          // if(bookings.isEmpty()) {
-          nextAvailableDate = systemDate;
-          // } else {
-          //   int nextDay = Integer.parseInt(day) + 1;
-          //   nextAvailableDate = String.valueOf(nextDay) + "/" + dateParts[1] + "/" +
-          // dateParts[2];
-          //   break;
-          // }
 
-          // while (booking.getDate().equals(systemDate)) {
-          //   int nextDay = Integer.parseInt(day) + 1;
-          //   nextAvailableDate = String.valueOf(nextDay) + "/" + dateParts[1] + "/" +
-          // dateParts[2];
-          //   break;
-          // }
-        }
+    for Venues venues : venue) { 
+      if (venues.getVenueCode().equals(venueCode2)) {
+        venues.getNextAvailableDate(systemDate, bookings);
       }
     }
+
+    // // Next available date
+    // for (Venues venues : venue) {
+    //   for (Booking booking : bookings) {
+    //     if (venues.getVenueCode().equals(venueCode2)) {
+    //       // if(bookings.isEmpty()) {
+    //       nextAvailableDate = systemDate;
+    //       // } else {
+    //       //   int nextDay = Integer.parseInt(day) + 1;
+    //       //   nextAvailableDate = String.valueOf(nextDay) + "/" + dateParts[1] + "/" +
+    //       // dateParts[2];
+    //       //   break;
+    //       // }
+
+    //       // while (booking.getDate().equals(systemDate)) {
+    //       //   int nextDay = Integer.parseInt(day) + 1;
+    //       //   nextAvailableDate = String.valueOf(nextDay) + "/" + dateParts[1] + "/" +
+    //       // dateParts[2];
+    //       //   break;
+    //       // }
+    //     }
+    //   }
+    // }
 
     // for (int i = 0; i < options.length; i++) {
     //   String value = options[i];
