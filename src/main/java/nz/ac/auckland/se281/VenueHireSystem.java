@@ -13,7 +13,6 @@ public class VenueHireSystem {
   private List<Venues> venue = new ArrayList<Venues>();
   private String systemDate;
   private List<Booking> bookings = new ArrayList<Booking>();
-  private String nextAvailableDate;
 
   public void printVenues() {
 
@@ -23,22 +22,6 @@ public class VenueHireSystem {
       MessageCli.NO_VENUES.printMessage();
       return;
     }
-
-    // for (Booking booking : bookings) {
-    //   for (Venues venues : venue) {
-    //     if (booking.getBookingVenueCode().equals(venues.getVenueCode())) {
-    //       if (booking.getDate().isEmpty()) {
-    //         nextAvailableDate = systemDate;
-    //         break;
-    //       }
-    //       // if (booking.getDate().equals(systemDate)) {
-    //       //   int nextDay = Integer.parseInt(systemDate.split("/")[0]) + 1;
-    //       //   nextAvailableDate = String.valueOf(nextDay) + "/" + systemDate.split("/")[1] + "/" +
-    //       // systemDate.split("/")[2];
-    //       // }
-    //     }
-    //   }
-    // }
 
     // using switch statement to print the number of venues
     switch (numVenues) {
@@ -50,7 +33,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              nextAvailableDate);
+              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 2:
@@ -61,7 +44,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              nextAvailableDate);
+              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 3:
@@ -72,7 +55,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              nextAvailableDate);
+              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 4:
@@ -83,7 +66,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              nextAvailableDate);
+              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 5:
@@ -94,7 +77,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              nextAvailableDate);
+              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 6:
@@ -105,7 +88,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              nextAvailableDate);
+              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 7:
@@ -116,7 +99,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              nextAvailableDate);
+              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 8:
@@ -127,7 +110,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              nextAvailableDate);
+              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
         }
         break;
       case 9:
@@ -138,7 +121,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              nextAvailableDate);
+              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
         }
         break;
         // default case for more than 9 venues
@@ -150,7 +133,7 @@ public class VenueHireSystem {
               venue.get(i).getVenueCode(),
               venue.get(i).getCapacityInput(),
               venue.get(i).getHireFeeInput(),
-              nextAvailableDate);
+              ((Venues) venue).getNextAvailableDate(systemDate, bookings));
         }
     }
   }
@@ -204,6 +187,16 @@ public class VenueHireSystem {
 
     this.systemDate = dateInput;
     MessageCli.DATE_SET.printMessage(dateInput);
+
+    for (Venues venues : venue) {
+      for (Booking booking : bookings) {
+        if (venues.getVenueCode().equals(booking.getBookingVenueCode())) {
+          venues.getNextAvailableDate(systemDate, bookings);
+          return;
+        }
+      }
+    }
+
     return;
   }
 
@@ -303,35 +296,12 @@ public class VenueHireSystem {
       }
     }
 
-
-    for Venues venues : venue) { 
+    for (Venues venues : venue) {
       if (venues.getVenueCode().equals(venueCode2)) {
         venues.getNextAvailableDate(systemDate, bookings);
+        return;
       }
     }
-
-    // // Next available date
-    // for (Venues venues : venue) {
-    //   for (Booking booking : bookings) {
-    //     if (venues.getVenueCode().equals(venueCode2)) {
-    //       // if(bookings.isEmpty()) {
-    //       nextAvailableDate = systemDate;
-    //       // } else {
-    //       //   int nextDay = Integer.parseInt(day) + 1;
-    //       //   nextAvailableDate = String.valueOf(nextDay) + "/" + dateParts[1] + "/" +
-    //       // dateParts[2];
-    //       //   break;
-    //       // }
-
-    //       // while (booking.getDate().equals(systemDate)) {
-    //       //   int nextDay = Integer.parseInt(day) + 1;
-    //       //   nextAvailableDate = String.valueOf(nextDay) + "/" + dateParts[1] + "/" +
-    //       // dateParts[2];
-    //       //   break;
-    //       // }
-    //     }
-    //   }
-    // }
 
     // for (int i = 0; i < options.length; i++) {
     //   String value = options[i];

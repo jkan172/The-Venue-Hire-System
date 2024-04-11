@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Venues {
 
@@ -32,7 +32,7 @@ public class Venues {
     return hireFeeInput;
   }
 
-  public String getNextAvailableDate(String date, ArrayList<Booking> bookings) {
+  public String getNextAvailableDate(String date, List<Booking> bookings) {
     if (bookings.isEmpty()) {
       return date;
     }
@@ -47,7 +47,7 @@ public class Venues {
           // adding a day to the date
           int nextDate = Integer.parseInt(day) + 1;
           String nextdateString = String.valueOf(nextDate) + "/" + month + "/" + year;
-          date = getNextAvailableDate(nextdateString, bookings);
+          date = this.getNextAvailableDate(nextdateString, bookings);
         }
       }
     }
