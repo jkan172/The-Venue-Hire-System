@@ -354,7 +354,20 @@ public class VenueHireSystem {
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
-    // TODO implement this method
+    boolean bookingExists = false;
+
+    for (Booking booking : bookings) {
+      if (booking.getBookingReference().equals(bookingReference)) {
+        
+        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Catering", bookingReference);
+        bookingExists = true;
+        break;
+      }
+    }
+    if (!bookingExists) {
+      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage(
+          "Catering service", bookingReference);
+    }
   }
 
   public void addServiceMusic(String bookingReference) {
