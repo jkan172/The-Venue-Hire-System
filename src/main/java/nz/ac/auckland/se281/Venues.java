@@ -1,8 +1,8 @@
 package nz.ac.auckland.se281;
 
-import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Venues {
 
@@ -45,15 +45,10 @@ public class Venues {
           int day = Integer.parseInt(dateParts[0]); // "day"
           int month = Integer.parseInt(dateParts[1]); // "month"
           int year = Integer.parseInt(dateParts[2]); // "year"
-          // adding a day to the date
-          // int nextDate = day + 1;
-          // String nextdateString = String.valueOf(nextDate) + "/" + month + "/" + year;
-          // date = getNextAvailableDate(nextdateString, bookings);
-
           LocalDate nextDate = LocalDate.of(year, month, day).plusDays(1);
-          date = getNextAvailableDate(nextDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-          bookings);
-
+          date =
+              getNextAvailableDate(
+                  nextDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), bookings);
         }
       }
       return date;

@@ -8,7 +8,12 @@ public class Booking {
   private String numOfAttendees;
   private String bookingReference;
 
-  public Booking(String venueCode, String date, String customerEmail, String numOfAttendees, String bookingReference) {
+  public Booking(
+      String venueCode,
+      String date,
+      String customerEmail,
+      String numOfAttendees,
+      String bookingReference) {
 
     this.venueCode = venueCode;
     this.date = date;
