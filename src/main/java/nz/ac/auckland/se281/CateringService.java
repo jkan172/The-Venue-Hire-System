@@ -26,7 +26,8 @@ public class CateringService extends Services {
   }
 
   public String getName() {
-    return this.name;
+    String cateringName = "Catering (" + this.name + ")";
+    return cateringName;
   }
 
   public CateringType getCateringType() {
