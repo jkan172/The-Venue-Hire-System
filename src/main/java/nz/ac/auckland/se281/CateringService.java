@@ -6,9 +6,10 @@ public class CateringService extends Services {
 
   private String bookingReference;
   private String serviceType;
-  private String costPerPerson;
+  private int costPerPerson;
   private String name;
   private CateringType cateringType;
+  
 
   // public CateringService(String bookingReference) {
   //   super();
@@ -18,6 +19,7 @@ public class CateringService extends Services {
     super(bookingReference);
     this.cateringType = cateringType;
     this.name = cateringType.getName();
+    this.costPerPerson = cateringType.getCostPerPerson();
   }
 
   // @Override
@@ -34,5 +36,9 @@ public class CateringService extends Services {
   public CateringType getCateringType() {
     return cateringType;
 
+  }
+
+  public int getCostPerPerson() {
+    return costPerPerson;
   }
 }

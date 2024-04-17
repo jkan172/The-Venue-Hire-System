@@ -12,5 +12,9 @@ public class MusicService extends Services{
     String serviceName = "Music";
     return serviceName;
   }
+
+  public int getCost() {
+    return 500;
+  }
   
 }
