@@ -386,14 +386,39 @@ public class VenueHireSystem {
       MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Music", bookingReference);
     }
 
-    // TODO implement this method
   }
 
   public void addServiceFloral(String bookingReference, FloralType floralType) {
-    // TODO implement this method
+    boolean bookingExists = false;
+
+    for (Booking booking : bookings) {
+      if (booking.getBookingReference().equals(bookingReference)) {
+        Services floralServices = new FloralService(bookingReference, floralType); 
+        services.add(floralServices);
+        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(floralServices.getName(), bookingReference);
+        bookingExists = true;
+        break;
+      }
+    }
+    if (!bookingExists) {
+      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Floral", bookingReference);
+    }
   }
 
   public void viewInvoice(String bookingReference) {
-    // TODO implement this method
+    boolean bookingExists = false;
+    for (Venues venues : venue) {
+      for(Booking booking : bookings) {
+        if (booking.getBookingReference().equals(bookingReference)) {
+        MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(bookingReference, booking.getCustomerEmail(), systemDate, booking.getDate(), venues.getVenueName());
+        bookingExists = true;
+        return;
+      } 
+      }
+    }
+    if(!bookingExists) {
+      MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
+      return;
+    }
   }
 }
