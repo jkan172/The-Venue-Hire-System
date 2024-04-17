@@ -383,7 +383,7 @@ public class VenueHireSystem {
     }
   }
     if(!bookingExists) {
-      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Music Service", bookingReference);
+      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Music", bookingReference);
     }
 
     // TODO implement this method
