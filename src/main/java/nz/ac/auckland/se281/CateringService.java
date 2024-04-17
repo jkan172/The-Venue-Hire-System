@@ -20,11 +20,12 @@ public class CateringService extends Services {
     this.name = cateringType.getName();
   }
 
-  @Override
-  public String getServiceType() {
-    return "Catering Service";
-  }
+  // @Override
+  // public String getServiceType() {
+  //   return "Catering Service";
+  // }
 
+  @Override
   public String getName() {
     String cateringName = "Catering (" + this.name + ")";
     return cateringName;

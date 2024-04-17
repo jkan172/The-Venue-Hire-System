@@ -373,6 +373,19 @@ public class VenueHireSystem {
   }
 
   public void addServiceMusic(String bookingReference) {
+    boolean bookingExists = false;
+    for(Booking booking : bookings) {
+    if (booking.getBookingReference().equals(bookingReference)) {
+      Services musicService = new MusicService(bookingReference);
+      services.add(musicService);
+      MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(musicService.getName(), bookingReference);
+      bookingExists = true;
+    }
+  }
+    if(!bookingExists) {
+      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Music Service", bookingReference);
+    }
+
     // TODO implement this method
   }
 

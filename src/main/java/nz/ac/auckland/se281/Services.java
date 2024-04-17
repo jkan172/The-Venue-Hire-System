@@ -11,7 +11,7 @@ public abstract class Services {
     
   }
 
-  public abstract String getServiceType();
+  // public abstract String getServiceType();
 
 
 
