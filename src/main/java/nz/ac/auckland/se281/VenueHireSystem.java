@@ -367,25 +367,23 @@ public class VenueHireSystem {
       }
     }
     if (!bookingExists) {
-      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage(
-        "Catering", bookingReference);
+      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Catering", bookingReference);
     }
   }
 
   public void addServiceMusic(String bookingReference) {
     boolean bookingExists = false;
-    for(Booking booking : bookings) {
-    if (booking.getBookingReference().equals(bookingReference)) {
-      Services musicService = new MusicService(bookingReference);
-      services.add(musicService);
-      MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(musicService.getName(), bookingReference);
-      bookingExists = true;
+    for (Booking booking : bookings) {
+      if (booking.getBookingReference().equals(bookingReference)) {
+        Services musicService = new MusicService(bookingReference);
+        services.add(musicService);
+        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(musicService.getName(), bookingReference);
+        bookingExists = true;
+      }
     }
-  }
-    if(!bookingExists) {
+    if (!bookingExists) {
       MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Music", bookingReference);
     }
-
   }
 
   public void addServiceFloral(String bookingReference, FloralType floralType) {
@@ -393,7 +391,7 @@ public class VenueHireSystem {
 
     for (Booking booking : bookings) {
       if (booking.getBookingReference().equals(bookingReference)) {
-        Services floralServices = new FloralService(bookingReference, floralType); 
+        Services floralServices = new FloralService(bookingReference, floralType);
         services.add(floralServices);
         MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(floralServices.getName(), bookingReference);
         bookingExists = true;
@@ -408,15 +406,37 @@ public class VenueHireSystem {
   public void viewInvoice(String bookingReference) {
     boolean bookingExists = false;
     for (Venues venues : venue) {
-      for(Booking booking : bookings) {
-        if (booking.getBookingReference().equals(bookingReference)) {
-        MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(bookingReference, booking.getCustomerEmail(), systemDate, booking.getDate(), venues.getVenueName());
-        bookingExists = true;
-        return;
-      } 
+      for (Booking booking : bookings) {
+        for (Services service : services) {
+          if (booking.getBookingReference().equals(bookingReference)) {
+            MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(
+                bookingReference,
+                booking.getCustomerEmail(),
+                systemDate,
+                booking.getDate(),
+                String.valueOf(booking.getNumOfAttendees()),
+                venues.getVenueName());
+            MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(venues.getHireFeeInput());
+            if (service.getName().contains("Catering")) {
+              MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(
+                  service.getName(),
+                  String.valueOf(service.getCost() * booking.getNumOfAttendees()));
+            }
+            if (service.getName().contains("Music")) {
+              MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage(
+                  String.valueOf(service.getCost()));
+            }
+            // if (service.getName().contains("Floral")) {
+            //   MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(service.getServiceType);
+            // }
+            // MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage("totalCost");
+            bookingExists = true;
+            return;
+          }
+        }
       }
     }
-    if(!bookingExists) {
+    if (!bookingExists) {
       MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
       return;
     }

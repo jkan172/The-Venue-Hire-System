@@ -33,8 +33,13 @@ public class Booking {
   public String getBookingReference() {
     return bookingReference;
   }
-  
-  public String getCustomerEmail () {
+
+  public String getCustomerEmail() {
     return customerEmail;
+  }
+
+  public int getNumOfAttendees() {
+      int attendees = Integer.parseInt(numOfAttendees);
+    return attendees;
   }
 }

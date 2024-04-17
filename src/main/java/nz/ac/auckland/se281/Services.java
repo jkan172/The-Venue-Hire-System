@@ -1,6 +1,5 @@
 package nz.ac.auckland.se281;
 
-import java.util.ArrayList;
 
 public abstract class Services {
 
@@ -8,13 +7,11 @@ public abstract class Services {
 
   public Services(String bookingReference) {
     this.bookingReference = bookingReference;
-    
   }
 
   // public abstract String getServiceType();
 
-
+  public abstract int getCost();
 
   public abstract String getName();
-  
 }
