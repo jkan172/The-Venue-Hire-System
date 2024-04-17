@@ -15,6 +15,7 @@ public class VenueHireSystem {
   private String systemDate;
   private ArrayList<Booking> bookings = new ArrayList<Booking>();
   private String bookingReference;
+  private ArrayList<Services> services = new ArrayList<>();
 
   public void printVenues() {
 
@@ -358,15 +359,16 @@ public class VenueHireSystem {
 
     for (Booking booking : bookings) {
       if (booking.getBookingReference().equals(bookingReference)) {
-        
-        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Catering", bookingReference);
+        Services cateringService = new CateringService(bookingReference, cateringType);
+        services.add(cateringService);
+        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(cateringService.getName(), bookingReference);
         bookingExists = true;
         break;
       }
     }
     if (!bookingExists) {
       MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage(
-          "Catering service", bookingReference);
+        "Catering", bookingReference);
     }
   }
 

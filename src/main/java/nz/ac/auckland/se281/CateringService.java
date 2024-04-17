@@ -16,11 +16,21 @@ public class CateringService extends Services {
 
   public CateringService(String bookingReference, CateringType cateringType) {
     super(bookingReference);
-    cateringType = this.cateringType;
+    this.cateringType = cateringType;
+    this.name = cateringType.getName();
   }
 
   @Override
   public String getServiceType() {
     return "Catering Service";
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public CateringType getCateringType() {
+    return cateringType;
+
   }
 }
