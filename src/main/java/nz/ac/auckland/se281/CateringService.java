@@ -14,8 +14,8 @@ public class CateringService extends Services {
   //   super();
   // }
 
-  public CateringService(String bookingReference, CateringType cateringType) {
-    super(bookingReference);
+  public CateringService(String bookingReference, CateringType cateringType, int cost) {
+    super(bookingReference, cost);
     this.cateringType = cateringType;
     this.name = cateringType.getName();
     this.costPerPerson = cateringType.getCostPerPerson();

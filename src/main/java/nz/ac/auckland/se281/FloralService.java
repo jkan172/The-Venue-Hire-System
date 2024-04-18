@@ -8,12 +8,12 @@ public class FloralService extends Services {
   private FloralType floralType;
   private int cost;
 
-  public FloralService(String bookingReference, FloralType floralType) {
+  public FloralService(String bookingReference, FloralType floralType, int cost) {
 
-    super(bookingReference);
+    super(bookingReference, cost);
     this.floralType = floralType;
     this.floralTypeName = floralType.getName();
-    this.cost = cost;
+    this.cost = floralType.getCost();
   }
 
   @Override
@@ -26,7 +26,7 @@ public class FloralService extends Services {
     return cost;
   }
 
-  public FloralType FloralType() {
+  public FloralType getFloralType() {
     return floralType;
   }
 }

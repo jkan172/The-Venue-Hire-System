@@ -1,10 +1,13 @@
 package nz.ac.auckland.se281;
 
-public class MusicService extends Services{
-  private String bookingReference;
+import nz.ac.auckland.se281.Types.CateringType;
 
-  public MusicService (String bookingReference) {
-    super(bookingReference);
+public class MusicService extends Services {
+  private String bookingReference;
+  private int cost;
+
+  public MusicService(String bookingReference, int cost) {
+    super(bookingReference, cost);
   }
 
   @Override
@@ -16,5 +19,4 @@ public class MusicService extends Services{
   public int getCost() {
     return 500;
   }
-  
 }
