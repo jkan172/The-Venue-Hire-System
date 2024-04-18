@@ -469,14 +469,14 @@ public class VenueHireSystem {
         cateringExists = true;
       }
 
-      if (service.getName().contains("Music")) {
+      if (service.getServiceType().contains("Music Service")) {
         musicService = (MusicService) service;
         musicName = musicService.getName();
         musicCost = musicService.getCost();
         musicExists = true;
       }
 
-      if (service.getName().contains("Floral")) {
+      if (service.getServiceType().contains("Floral Service")) {
         FloralService floralService = (FloralService) service;
         floralName = floralService.getName();
         // floralType = floralService.getFloralType();
@@ -506,7 +506,9 @@ public class VenueHireSystem {
       MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(floralName, String.valueOf(floralCost));
     }
 
-    MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage();
+    int TotalAmount = totalCateringCost + musicCost + floralCost;
+
+    MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(String.valueOf(TotalAmount));
 
     if (!bookingExists) {
       MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
