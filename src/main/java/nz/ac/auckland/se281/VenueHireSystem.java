@@ -437,10 +437,12 @@ public class VenueHireSystem {
         bookingExists = true;
 
         //print error message if the booking reference doesn't match
-      } else {
-        MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
+      } 
+    }
+
+    if (!bookingExists) {
+      MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
         return;
-      }
     }
 
     boolean venueExists = false;
@@ -476,6 +478,7 @@ public class VenueHireSystem {
 
     //loop through the services array list to see if each services exist for this booking
     for (Services service : services) {
+      if (service.bookingReference.equals(bookingReference)) {
       //if catering service is called then the variables are set for the name, catering type and cost 
       if (service.getServiceType().contains("Catering Service")) {
         cateringService = (CateringService) service;
@@ -500,6 +503,7 @@ public class VenueHireSystem {
         floralCost = floralService.getCost();
         floralExists = true;
       }
+    }
     }
     //print the top half of the invoice using the variables that we got from above
     MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(
