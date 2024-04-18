@@ -30,7 +30,7 @@ public class FloralService extends Services {
     return "Floral Service";
   }
 
-  public FloralType getFloralType(){
+  public FloralType getFloralType() {
     return floralType;
   }
 }

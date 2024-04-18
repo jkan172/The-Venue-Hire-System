@@ -39,7 +39,7 @@ public class Booking {
   }
 
   public int getNumOfAttendees() {
-      int attendees = Integer.parseInt(numOfAttendees);
+    int attendees = Integer.parseInt(numOfAttendees);
     return attendees;
   }
 }

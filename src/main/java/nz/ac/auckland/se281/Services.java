@@ -20,12 +20,11 @@ public abstract class Services {
 
   public abstract String getName();
 
-  public CateringType getCateringType () {
+  public CateringType getCateringType() {
     return cateringType;
   }
 
   public int getCost() {
     return this.cost;
   }
-
 }

@@ -21,10 +21,12 @@ public class VenueHireSystem {
 
     int numVenues = venue.size();
 
+    // if there is nothing the venue list then print no venues
     if (numVenues == 0) {
       MessageCli.NO_VENUES.printMessage();
       return;
     }
+    // if the system date is not currently set, then set system the local date
     if (systemDate == null || systemDate.isEmpty()) {
       MessageCli.CURRENT_DATE.printMessage("not set");
       systemDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -32,6 +34,7 @@ public class VenueHireSystem {
 
     // using switch statement to print the number of venues
     switch (numVenues) {
+        // case for when there is one venue in the list
       case 1:
         MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
         for (int i = 0; i < numVenues; i++) {
@@ -43,6 +46,7 @@ public class VenueHireSystem {
               venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
+        // case for when there are two venues in the list
       case 2:
         MessageCli.NUMBER_VENUES.printMessage("are", "two", "s");
         for (int i = 0; i < numVenues; i++) {
@@ -54,6 +58,7 @@ public class VenueHireSystem {
               venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
+        // case for when there are three venues in the list
       case 3:
         MessageCli.NUMBER_VENUES.printMessage("are", "three", "s");
         for (int i = 0; i < numVenues; i++) {
@@ -65,6 +70,7 @@ public class VenueHireSystem {
               venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
+        // case for when there are four venues in the list
       case 4:
         MessageCli.NUMBER_VENUES.printMessage("are", "four", "s");
         for (int i = 0; i < numVenues; i++) {
@@ -76,6 +82,7 @@ public class VenueHireSystem {
               venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
+        // case for when there are five venues in the list
       case 5:
         MessageCli.NUMBER_VENUES.printMessage("are", "five", "s");
         for (int i = 0; i < numVenues; i++) {
@@ -87,6 +94,7 @@ public class VenueHireSystem {
               venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
+        // case for when there are six venues in the list
       case 6:
         MessageCli.NUMBER_VENUES.printMessage("are", "six", "s");
         for (int i = 0; i < numVenues; i++) {
@@ -98,6 +106,7 @@ public class VenueHireSystem {
               venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
+        // case for when there are seven venues in the list
       case 7:
         MessageCli.NUMBER_VENUES.printMessage("are", "seven", "s");
         for (int i = 0; i < numVenues; i++) {
@@ -109,6 +118,7 @@ public class VenueHireSystem {
               venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
+        // case for when there are eight venues in the list
       case 8:
         MessageCli.NUMBER_VENUES.printMessage("are", "eight", "s");
         for (int i = 0; i < numVenues; i++) {
@@ -120,6 +130,7 @@ public class VenueHireSystem {
               venue.get(i).getNextAvailableDate(systemDate, bookings));
         }
         break;
+        // case for when there are nine venues in the list
       case 9:
         MessageCli.NUMBER_VENUES.printMessage("are", "nine", "s");
         for (int i = 0; i < numVenues; i++) {
@@ -160,12 +171,12 @@ public class VenueHireSystem {
         MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
         return;
       }
-
+      // this catches when the parseInt doesn't work
     } catch (NumberFormatException e) {
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", "");
       return;
     }
-
+    // Used another try-catch statement to make sure that the hire fee is a valid number
     try {
       int tempNum2 = Integer.parseInt(hireFeeInput);
 
@@ -173,6 +184,7 @@ public class VenueHireSystem {
         MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive");
         return;
       }
+      // this catches when the parseInt doesn't work
     } catch (NumberFormatException e) {
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
       return;
@@ -191,12 +203,14 @@ public class VenueHireSystem {
   }
 
   public void setSystemDate(String dateInput) {
-
+    // system date is the inputed date
     this.systemDate = dateInput;
     MessageCli.DATE_SET.printMessage(dateInput);
 
+    // Everytime a new system date is set, it gets the next available date
     for (Venues venues : venue) {
       for (Booking booking : bookings) {
+        // get the next date if the venue code in the list matches the input venue code
         if (venues.getVenueCode().equals(booking.getBookingVenueCode())) {
           venues.getNextAvailableDate(systemDate, bookings);
           return;
@@ -355,15 +369,15 @@ public class VenueHireSystem {
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
-    //Checking to see if booking exists using boolean
+    // Checking to see if booking exists using boolean
     boolean bookingExists = false;
 
     for (Booking booking : bookings) {
       if (booking.getBookingReference().equals(bookingReference)) {
-        //make a new instance of a Catering Service
+        // make a new instance of a Catering Service
         Services cateringService =
             new CateringService(bookingReference, cateringType, cateringType.getCostPerPerson());
-        //add the newly made instance to the services list
+        // add the newly made instance to the services list
         services.add(cateringService);
         MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(
             "Catering (" + cateringService.getName() + ")", bookingReference);
@@ -371,7 +385,7 @@ public class VenueHireSystem {
         break;
       }
     }
-    //print error messages if the booking reference does not exist
+    // print error messages if the booking reference does not exist
     if (!bookingExists) {
       MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Catering", bookingReference);
     }
@@ -382,15 +396,15 @@ public class VenueHireSystem {
     for (Booking booking : bookings) {
       if (booking.getBookingReference().equals(bookingReference)) {
         int cost = 500;
-        //make a new instance of a Music Service
+        // make a new instance of a Music Service
         Services musicService = new MusicService(bookingReference, cost);
-        //Add the it into the services array list
+        // Add the it into the services array list
         services.add(musicService);
         MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(musicService.getName(), bookingReference);
         bookingExists = true;
       }
     }
-    //if booking reference doesn't exist then print the error message
+    // if booking reference doesn't exist then print the error message
     if (!bookingExists) {
       MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Music", bookingReference);
     }
@@ -401,10 +415,10 @@ public class VenueHireSystem {
 
     for (Booking booking : bookings) {
       if (booking.getBookingReference().equals(bookingReference)) {
-        //make a new instance of the Floral Service 
+        // make a new instance of the Floral Service
         Services floralServices =
             new FloralService(bookingReference, floralType, floralType.getCost());
-        //Add the instance into the services array list
+        // Add the instance into the services array list
         services.add(floralServices);
         MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(
             "Floral (" + floralServices.getName() + ")", bookingReference);
@@ -412,7 +426,7 @@ public class VenueHireSystem {
         break;
       }
     }
-    //if booking reference doesn't exist then print error message
+    // if booking reference doesn't exist then print error message
     if (!bookingExists) {
       MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Floral", bookingReference);
     }
@@ -426,30 +440,30 @@ public class VenueHireSystem {
 
     boolean bookingExists = false;
 
-    //loop through the bookings list and check the booking reference exist in the list
+    // loop through the bookings list and check the booking reference exist in the list
     for (Booking booking : bookings) {
       if (booking.getBookingReference().equals(bookingReference)) {
-        //if the booking reference matches then set variables to use for printing the invoice
+        // if the booking reference matches then set variables to use for printing the invoice
         curstomerEmail = booking.getCustomerEmail();
         bookingDate = booking.getDate();
         numOfAttendees = booking.getNumOfAttendees();
         bookingVenueCode = booking.getBookingVenueCode();
         bookingExists = true;
 
-        //print error message if the booking reference doesn't match
-      } 
+        // print error message if the booking reference doesn't match
+      }
     }
 
     if (!bookingExists) {
       MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
-        return;
+      return;
     }
 
     boolean venueExists = false;
     String venueName = null;
     String hireFee = null;
 
-    //Loop through all the venues and use the getters to get the venueName and hireFeeInput
+    // Loop through all the venues and use the getters to get the venueName and hireFeeInput
     for (Venues venues : venue) {
       if (venues.getVenueCode().equals(bookingVenueCode)) {
         venueName = venues.getVenueName();
@@ -457,7 +471,7 @@ public class VenueHireSystem {
         venueExists = true;
       }
     }
-//initialize variables for us to use for printing the invoice
+    // initialize variables for us to use for printing the invoice
     CateringService cateringService;
     String cateringName = null;
     CateringType cateringType;
@@ -471,41 +485,43 @@ public class VenueHireSystem {
     int floralCost = 0;
     int totalCateringCost = 0;
 
-    //use boolean to check if each services exist
+    // use boolean to check if each services exist
     boolean cateringExists = false;
     boolean musicExists = false;
     boolean floralExists = false;
 
-    //loop through the services array list to see if each services exist for this booking
+    // loop through the services array list to see if each services exist for this booking
     for (Services service : services) {
       if (service.bookingReference.equals(bookingReference)) {
-      //if catering service is called then the variables are set for the name, catering type and cost 
-      if (service.getServiceType().contains("Catering Service")) {
-        cateringService = (CateringService) service;
-        cateringName = cateringService.getName();
-        cateringType = cateringService.getCateringType();
-        cateringCostPerPerson = cateringService.getCost();
-        totalCateringCost = cateringCostPerPerson * numOfAttendees;
-        cateringExists = true;
-      }
-      //if music service is called then the getters get the name and the constant cost of $500
-      if (service.getServiceType().contains("Music Service")) {
-        musicService = (MusicService) service;
-        musicName = musicService.getName();
-        musicCost = musicService.getCost();
-        musicExists = true;
-      }
-      //if the floral service is called then the getter gets the variables for the name, floral type and the cost
-      if (service.getServiceType().contains("Floral Service")) {
-        FloralService floralService = (FloralService) service;
-        floralName = floralService.getName();
-        floralType = floralService.getFloralType();
-        floralCost = floralService.getCost();
-        floralExists = true;
+        // if catering service is called then the variables are set for the name, catering type and
+        // cost
+        if (service.getServiceType().contains("Catering Service")) {
+          cateringService = (CateringService) service;
+          cateringName = cateringService.getName();
+          cateringType = cateringService.getCateringType();
+          cateringCostPerPerson = cateringService.getCost();
+          totalCateringCost = cateringCostPerPerson * numOfAttendees;
+          cateringExists = true;
+        }
+        // if music service is called then the getters get the name and the constant cost of $500
+        if (service.getServiceType().contains("Music Service")) {
+          musicService = (MusicService) service;
+          musicName = musicService.getName();
+          musicCost = musicService.getCost();
+          musicExists = true;
+        }
+        // if the floral service is called then the getter gets the variables for the name, floral
+        // type and the cost
+        if (service.getServiceType().contains("Floral Service")) {
+          FloralService floralService = (FloralService) service;
+          floralName = floralService.getName();
+          floralType = floralService.getFloralType();
+          floralCost = floralService.getCost();
+          floralExists = true;
+        }
       }
     }
-    }
-    //print the top half of the invoice using the variables that we got from above
+    // print the top half of the invoice using the variables that we got from above
     MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(
         bookingReference,
         curstomerEmail,
@@ -513,27 +529,27 @@ public class VenueHireSystem {
         bookingDate,
         String.valueOf(numOfAttendees),
         venueName);
-      //print the hire fee for booking the venue
+    // print the hire fee for booking the venue
     MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(hireFee);
 
-    //if catering exists then the invoice part of catering service is printed
+    // if catering exists then the invoice part of catering service is printed
     if (cateringExists) {
       MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(
           cateringName, String.valueOf(totalCateringCost));
     }
-    //if music exists then the invoice part for music service is printed
+    // if music exists then the invoice part for music service is printed
     if (musicExists) {
       MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage(String.valueOf(musicCost));
     }
-    //if floral exists then the invoice part for floral service is printed
+    // if floral exists then the invoice part for floral service is printed
     if (floralExists) {
       MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(floralName, String.valueOf(floralCost));
     }
 
-    //calculate the total amount for cost added up
-    int TotalAmount = Integer.parseInt(hireFee) + totalCateringCost + musicCost + floralCost;
+    // calculate the total amount for cost added up
+    int totalAmount = Integer.parseInt(hireFee) + totalCateringCost + musicCost + floralCost;
 
-    //print the bottom half of the invoice
-    MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(String.valueOf(TotalAmount));
+    // print the bottom half of the invoice
+    MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(String.valueOf(totalAmount));
   }
 }
