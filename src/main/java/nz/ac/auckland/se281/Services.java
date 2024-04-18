@@ -14,8 +14,6 @@ public abstract class Services {
   public Services(String bookingReference, int cost) {
     this.bookingReference = bookingReference;
     this.cost = cost;
-    // this.cateringCostPerPerson = cateringType.getCostPerPerson();
-    
   }
 
   public abstract String getServiceType();

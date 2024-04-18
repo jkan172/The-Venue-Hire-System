@@ -1,7 +1,5 @@
 package nz.ac.auckland.se281;
 
-import nz.ac.auckland.se281.Types.CateringType;
-
 public class MusicService extends Services {
   private String bookingReference;
   private int cost;
