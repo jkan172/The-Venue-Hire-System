@@ -26,7 +26,7 @@ public class FloralService extends Services {
     return cost;
   }
 
-  public FloralType getFloralType() {
-    return floralType;
+  public String getServiceType() {
+    return "Floral Service";
   }
 }

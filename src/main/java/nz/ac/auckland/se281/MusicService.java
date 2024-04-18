@@ -19,4 +19,9 @@ public class MusicService extends Services {
   public int getCost() {
     return 500;
   }
+
+  @Override
+  public String getServiceType() {
+    return "Music Service";
+  }
 }

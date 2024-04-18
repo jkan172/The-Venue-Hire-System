@@ -18,7 +18,7 @@ public abstract class Services {
     
   }
 
-  // public abstract String getServiceType();
+  public abstract String getServiceType();
 
   public abstract String getName();
 
@@ -26,8 +26,8 @@ public abstract class Services {
     return cateringType;
   }
 
-  // public int getCateringCostPerPerson() {
-  //   return 
-  // }
+  public int getCost() {
+    return this.cost;
+  }
 
 }

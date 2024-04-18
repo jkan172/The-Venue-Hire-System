@@ -359,9 +359,11 @@ public class VenueHireSystem {
 
     for (Booking booking : bookings) {
       if (booking.getBookingReference().equals(bookingReference)) {
-        Services cateringService = new CateringService(bookingReference, cateringType, cateringType.getCostPerPerson());
+        Services cateringService =
+            new CateringService(bookingReference, cateringType, cateringType.getCostPerPerson());
         services.add(cateringService);
-        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Catering (" + cateringService.getName() + ")", bookingReference);
+        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(
+            "Catering (" + cateringService.getName() + ")", bookingReference);
         bookingExists = true;
         break;
       }
@@ -392,9 +394,11 @@ public class VenueHireSystem {
 
     for (Booking booking : bookings) {
       if (booking.getBookingReference().equals(bookingReference)) {
-        Services floralServices = new FloralService(bookingReference, floralType, floralType.getCost());
+        Services floralServices =
+            new FloralService(bookingReference, floralType, floralType.getCost());
         services.add(floralServices);
-        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage("Floral (" + floralServices.getName() + ")", bookingReference);
+        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(
+            "Floral (" + floralServices.getName() + ")", bookingReference);
         bookingExists = true;
         break;
       }
@@ -409,9 +413,9 @@ public class VenueHireSystem {
     String bookingDate = null;
     int numOfAttendees = 0;
     String bookingVenueCode = null;
-    
+
     boolean bookingExists = false;
-    
+
     for (Booking booking : bookings) {
       if (booking.getBookingReference().equals(bookingReference)) {
         curstomerEmail = booking.getCustomerEmail();
@@ -419,7 +423,7 @@ public class VenueHireSystem {
         numOfAttendees = booking.getNumOfAttendees();
         bookingVenueCode = booking.getBookingVenueCode();
         bookingExists = true;
-        
+
       } else {
         MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
         return;
@@ -430,12 +434,11 @@ public class VenueHireSystem {
     String venueName = null;
     String hireFee = null;
 
-
     for (Venues venues : venue) {
-      if(venues.getVenueCode().equals(bookingVenueCode)) {
-         venueName = venues.getVenueName();
-      hireFee = venues.getHireFeeInput();
-      venueExists = true;
+      if (venues.getVenueCode().equals(bookingVenueCode)) {
+        venueName = venues.getVenueName();
+        hireFee = venues.getHireFeeInput();
+        venueExists = true;
       }
     }
 
@@ -445,71 +448,65 @@ public class VenueHireSystem {
     int cateringCostPerPerson = 0;
     MusicService musicService;
     String musicName = null;
-    int musicCost = 0;;
-    String floralName = null;
-    FloralType floralType;
-    int floralCost = 0;
+    int musicCost = 0;
 
-boolean cateringExists = false;
-boolean musicExists = false;
-boolean floralExists = false;
+    String floralName = null;
+    // FloralType floralType;
+    int floralCost = 0;
+    int totalCateringCost = 0;
+
+    boolean cateringExists = false;
+    boolean musicExists = false;
+    boolean floralExists = false;
 
     for (Services service : services) {
-      if(service.getName().contains("Catering")) {
-      cateringService = (CateringService) service;
-      cateringName = cateringService.getName();
-      cateringType = cateringService.getCateringType();
-      cateringCostPerPerson = cateringService.getCost();
-      cateringExists = true;
+      if (service.getServiceType().contains("Catering Service")) {
+        cateringService = (CateringService) service;
+        cateringName = cateringService.getName();
+        cateringType = cateringService.getCateringType();
+        cateringCostPerPerson = cateringService.getCost();
+        totalCateringCost = cateringCostPerPerson * numOfAttendees;
+        cateringExists = true;
       }
-        
-      if(service.getName().contains("Music")) {
-      musicService = (MusicService) service;
-      musicName = musicService.getName();
-      musicCost = musicService.getCost();
-      musicExists = true;
+
+      if (service.getName().contains("Music")) {
+        musicService = (MusicService) service;
+        musicName = musicService.getName();
+        musicCost = musicService.getCost();
+        musicExists = true;
+      }
+
+      if (service.getName().contains("Floral")) {
+        FloralService floralService = (FloralService) service;
+        floralName = floralService.getName();
+        // floralType = floralService.getFloralType();
+        floralCost = floralService.getCost();
+        floralExists = true;
+      }
     }
 
-    if(service.getName().contains("Floral")) {
-      FloralService floralService = (FloralService) service;
-      floralName = floralService.getName();
-      floralType = floralService.getFloralType();
-      floralCost = floralService.getCost();
-      floralExists = true;
-  }
+    MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(
+        bookingReference,
+        curstomerEmail,
+        systemDate,
+        bookingDate,
+        String.valueOf(numOfAttendees),
+        venueName);
+    MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(hireFee);
 
+    if (cateringExists) {
+      MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(
+          cateringName, String.valueOf(totalCateringCost));
     }
 
-            MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(
-                bookingReference,
-                curstomerEmail,
-                systemDate,
-                bookingDate,
-                String.valueOf(numOfAttendees),
-                venueName);
-            MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(hireFee);
+    if (musicExists) {
+      MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage(String.valueOf(musicCost));
+    }
+    if (floralExists) {
+      MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(floralName, String.valueOf(floralCost));
+    }
 
-            if (cateringExists) {
-              MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(
-                  cateringName,
-                  String.valueOf(cateringCostPerPerson*numOfAttendees));
-            }
-            
-            
-           if (musicExists) {
-              MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage(
-                  String.valueOf(musicCost));
-          }
-            if (floralExists) {
-              MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(
-                  floralName,
-                  String.valueOf(floralCost));
-            }
-              
-            
-            MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage();
-            
-            
+    MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage();
 
     if (!bookingExists) {
       MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);

@@ -21,10 +21,10 @@ public class CateringService extends Services {
     this.cost = cateringType.getCostPerPerson();
   }
 
-  // @Override
-  // public String getServiceType() {
-  //   return "Catering Service";
-  // }
+  @Override
+  public String getServiceType() {
+    return "Catering Service";
+  }
 
   @Override
   public String getName() {
