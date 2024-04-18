@@ -451,7 +451,7 @@ public class VenueHireSystem {
     int musicCost = 0;
 
     String floralName = null;
-    // FloralType floralType;
+    FloralType floralType;
     int floralCost = 0;
     int totalCateringCost = 0;
 
@@ -479,7 +479,7 @@ public class VenueHireSystem {
       if (service.getServiceType().contains("Floral Service")) {
         FloralService floralService = (FloralService) service;
         floralName = floralService.getName();
-        // floralType = floralService.getFloralType();
+        floralType = floralService.getFloralType();
         floralCost = floralService.getCost();
         floralExists = true;
       }
@@ -506,7 +506,7 @@ public class VenueHireSystem {
       MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(floralName, String.valueOf(floralCost));
     }
 
-    int TotalAmount = totalCateringCost + musicCost + floralCost;
+    int TotalAmount = Integer.parseInt(hireFee) + totalCateringCost + musicCost + floralCost;
 
     MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(String.valueOf(TotalAmount));
 
