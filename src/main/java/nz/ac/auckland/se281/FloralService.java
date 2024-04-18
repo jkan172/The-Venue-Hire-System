@@ -18,7 +18,7 @@ public class FloralService extends Services {
 
   @Override
   public String getName() {
-    String floralType = "Floral (" + this.floralTypeName + ")";
+    String floralType = this.floralTypeName;
     return floralType;
   }
 
