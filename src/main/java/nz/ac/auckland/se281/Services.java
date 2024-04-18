@@ -11,20 +11,20 @@ public abstract class Services {
   protected FloralType floralType;
   protected CateringType cateringCostPerPerson;
 
-  public Services(String bookingReference, int cost) {
+  protected Services(String bookingReference, int cost) {
     this.bookingReference = bookingReference;
     this.cost = cost;
   }
 
-  public abstract String getServiceType();
+  protected abstract String getServiceType();
 
-  public abstract String getName();
+  protected abstract String getName();
 
-  public CateringType getCateringType() {
+  protected CateringType getCateringType() {
     return cateringType;
   }
 
-  public int getCost() {
+  protected int getCost() {
     return this.cost;
   }
 }
