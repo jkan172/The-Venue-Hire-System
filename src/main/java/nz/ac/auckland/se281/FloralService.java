@@ -9,7 +9,7 @@ public class FloralService extends Services {
   private int cost;
 
   public FloralService(String bookingReference, FloralType floralType, int cost) {
-
+    // used super() to get the booking reference and cost from the parent class
     super(bookingReference, cost);
     this.floralType = floralType;
     this.floralTypeName = floralType.getName();

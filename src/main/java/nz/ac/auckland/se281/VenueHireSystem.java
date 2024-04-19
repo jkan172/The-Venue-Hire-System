@@ -34,7 +34,7 @@ public class VenueHireSystem {
 
     // using switch statement to print the number of venues
     switch (numVenues) {
-      // case for when there is one venue in the list
+        // case for when there is one venue in the list
       case 1:
         MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
         for (int i = 0; i < numVenues; i++) {

@@ -11,13 +11,16 @@ public abstract class Services {
   protected FloralType floralType;
   protected CateringType cateringCostPerPerson;
 
+  // protected main method and set this for booking reference and cost
   protected Services(String bookingReference, int cost) {
     this.bookingReference = bookingReference;
     this.cost = cost;
   }
 
+  // made a protected get service type abstract method
   protected abstract String getServiceType();
 
+  // made a protected get name abstract method
   protected abstract String getName();
 
   protected CateringType getCateringType() {

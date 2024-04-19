@@ -5,9 +5,11 @@ public class MusicService extends Services {
   private int cost;
 
   public MusicService(String bookingReference, int cost) {
+    // super() to get the booking reference and cost from the parent class
     super(bookingReference, cost);
   }
 
+  // override the get Name abstract class
   @Override
   public String getName() {
     String serviceName = "Music";
